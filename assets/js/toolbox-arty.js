@@ -57,6 +57,92 @@ function clearRange() {
 
 }
 
+function convertToJson() {
+
+	const toSave = [];
+	_artyList.forEach(function(element)
+	{
+		let infos = {};
+		if (element.first !== undefined) {
+			infos.first = {
+				latLng: element.first.latLng,
+				point: element.first.point,
+				type: element.first.type
+			}
+		}
+		if (element.second !== undefined) {
+			infos.second = {
+				latLng: element.second.latLng,
+				point: element.second.point
+			}
+		}
+		toSave.push(infos);
+	});
+
+	return JSON.stringify(toSave);
+
+}
+
+function loadJson(json)
+{
+
+	const data = JSON.parse(json);
+
+	data.forEach(function(element) {
+		console.log(element);
+	});
+
+}
+
+function addArty(arty, type, latLng, point)
+{
+	arty.first.latLng = latLng;
+	arty.first.point = point;
+	arty.first.type = type;
+
+	const config = ranges[type];
+
+	arty.first.minRange = L.circle(latLng, {
+		radius: config.min,
+		color: '#c0392b',
+		weight: 1
+	}).addTo(map);
+
+	arty.first.maxRange = L.circle(latLng, {
+		radius: config.max,
+		color: config.color,		
+		weight: 1
+	}).addTo(map);
+
+	arty.first.marker = L.marker(latLng, {
+		icon: colors[_artyNumber]
+	}).bindPopup('Arty ' + (_artyNumber + 1)).addTo(map);
+}
+
+function addCible(arty, latLng, point)
+{
+	arty.second.latLng = latLng;
+	arty.second.point = point;
+
+	arty.second.marker = L.marker(arty.second.latLng, {
+		icon: colors[_artyNumber],
+		draggable: true,
+		title: 'Cible ' + (_artyNumber + 1) 
+	})
+	.addTo(map);
+
+	if (arty.first.latLng !== undefined && arty.second.latLng !== undefined) {
+    
+		let distance = L.GeometryUtil.length([arty.first.point, arty.second.point]);
+		distance = Math.floor(distance * 1.25);
+
+		let azimut = L.GeometryUtil.angle(map, arty.first.latLng, arty.second.latLng);
+		azimut = Math.floor(azimut);
+
+		arty.second.marker.bindPopup('Dist. ' + distance + 'm<br/>Azim. ' + azimut).openPopup();
+	}
+}
+
 $('#toolbox #btn .btn').click(function(e) {
 	let element = $(this);
 	if (element.hasClass('selected')) {
@@ -91,28 +177,9 @@ map.on('click', function(e) {
 		if (_artyList[_artyNumber].first == undefined) _artyList[_artyNumber].first = {}; // Create if not exit
 		if(arty.first.marker != undefined) arty.first.marker.remove(map);
 
-		arty.first.latLng = e.latlng;
-	    arty.first.point = e.layerPoint;
+		addArty(arty, _artyTool, e.latlng, e.layerPoint);
 
-	    const config = ranges[_artyTool];
-
-		arty.first.minRange = L.circle(e.latlng, {
-			radius: config.min,
-			color: '#c0392b',
-			weight: 1
-		}).addTo(map);
-
-		arty.first.maxRange = L.circle(e.latlng, {
-			radius: config.max,
-			color: config.color,		
-			weight: 1
-		}).addTo(map);
-
-	    arty.first.marker = L.marker(arty.first.latLng, {
-	 		icon: colors[_artyNumber]
-	    }).bindPopup('Arty ' + (_artyNumber + 1)).addTo(map);
-
-	    toastr.success('Artillery point has been added.', 'Success', {
+		toastr.success('Artillery point has been added.', 'Success', {
 			positionClass: 'toast-bottom-left',
 			progressBar: true,
 		});
@@ -125,26 +192,7 @@ map.on('click', function(e) {
 		if (_artyList[_artyNumber].second == undefined) _artyList[_artyNumber].second = {}; // Create if not exit
 		if(arty.second.marker !== undefined) arty.second.marker.remove(map);
 
-	    arty.second.latLng = e.latlng;
-	    arty.second.point = e.layerPoint;
-
-		arty.second.marker = L.marker(arty.second.latLng, {
-			icon: colors[_artyNumber],
-			draggable: true,
-			title: 'Cible ' + (_artyNumber + 1) 
-		})
-		.addTo(map);
-
-		if (arty.first.latLng !== undefined && arty.second.latLng !== undefined) {
-    
-			let distance = L.GeometryUtil.length([arty.first.point, arty.second.point]);
-			distance = Math.floor(distance * 1.25);
-
-			let azimut = L.GeometryUtil.angle(map, arty.first.latLng, arty.second.latLng);
-			azimut = Math.floor(azimut);
-
-		    arty.second.marker.bindPopup('Dist. ' + distance + 'm<br/>Azim. ' + azimut).openPopup();
-		}
+	    addCible(arty, e.latlng, e.layerPoint);
 
 		toastr.success('Cible point has been added.', 'Success', {
 			positionClass: 'toast-bottom-left',
@@ -156,39 +204,83 @@ map.on('click', function(e) {
 });
 
 // 
-$('#toolbox #list #select').change(function()
+$('#toolbox #tools #select').change(function()
 {
-	const value = $('#toolbox #list #select').val();
+	const value = $('#toolbox #tools #select').val();
 	_artyNumber = parseInt(value);
 	const color = colors[_artyNumber].options.hexa;
-	$("#toolbox #list #select").css('background-color', color);
+	$("#toolbox #tools #select").css('background-color', color);
 });
 
-$('#toolbox #list #add').click(function(e)
+// Add "calque"
+$('#toolbox #tools #add').click(function(e)
 {
-
 	const number = _artyList.length;
 	if (colors[number] == undefined) return false;
 	_artyList[number] = [];
 
 	const color  = colors[number].options.hexa;
-	$("#toolbox #list #select").append(
+	$("#toolbox #tools #select").append(
 		'<option value="' + number + '" style="background-color: ' + color + ' ">' + 'Arty ' + (number + 1) +'</option>'
 	);
 
 	// Change select box and color
-	$('#toolbox #list #select option[value="' + number + '"]').prop('selected', true);
-	$("#toolbox #list #select").css('background-color', color);
+	$('#toolbox #tools #select option[value="' + number + '"]').prop('selected', true);
+	$("#toolbox #tools #select").css('background-color', color);
+	_artyNumber = number;
 
-
+	// Notification
+	toastr.success('New Arty has been create.', 'Success', {
+		positionClass: 'toast-bottom-left',
+		progressBar: true,
+	});
 });
 
-$('#toolbox #list #remove').click(function(e)
+// Remove "calque"
+$('#toolbox #tools #remove').click(function(e)
 {
 	clearRange();
 	const arty = _artyList[_artyNumber];
 	if(arty.first.marker !== undefined) arty.first.marker.remove(map);
 	if(arty.second.marker !== undefined) arty.second.marker.remove(map);
+
+	// Notification
+	toastr.success('Arty has been clear.', 'Success', {
+		positionClass: 'toast-bottom-left',
+		progressBar: true,
+	});
+});
+
+// Save to localstorage
+$('#toolbox #tools #save').click(function(e)
+{
+	const json = convertToJson();
+	sessionStorage.setItem("artyList", json);
+
+	// Notification
+	toastr.success('Arty has been saved.', 'Success', {
+		positionClass: 'toast-bottom-left',
+		progressBar: true,
+	});
+});
+
+// Share _artyList
+$('#toolbox #tools #share').click(function(e)
+{
+	const json = convertToJson();
+
+	const clipboard = $("<input>");
+	$("body").append(clipboard);
+	clipboard.val(window.location.href + "?share=" + json).select();
+	document.execCommand("copy");
+	clipboard.remove();
+
+	// Notification
+	toastr.success('Url ha been copied to the clipboard.', 'Success', {
+		positionClass: 'toast-bottom-left',
+		progressBar: true,
+	});
+
 });
 
 // On ready
@@ -196,8 +288,25 @@ $(document).ready(function()
 {
 	const color = colors[_artyNumber].options.hexa;
     _artyList[_artyNumber] = {};
-	$("#toolbox #list #select").append(
+	$("#toolbox #tools #select").append(
 		'<option value="' + _artyNumber + '" style="background-color: ' + color + ' ">' + 'Arty ' + (_artyNumber + 1) +'</option>'
 	);
-	$("#toolbox #list #select").css('background-color', color);
+	$("#toolbox #tools #select").css('background-color', color);
+
+	const share = $.urlParam('share');
+	const store = sessionStorage.getItem("artyList");
+	if (share !== undefined && share !== null) {
+		loadJson(share);
+	} else if (store !== undefined) {
+		loadJson(store);
+	}
+
 });
+
+$.urlParam = function(name){
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    if (results==null) {
+       return null;
+    }
+    return decodeURI(results[1]) || 0;
+}
