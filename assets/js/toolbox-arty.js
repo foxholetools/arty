@@ -166,14 +166,20 @@ $('#toolbox #list #select').change(function()
 
 $('#toolbox #list #add').click(function(e)
 {
+
 	const number = _artyList.length;
 	if (colors[number] == undefined) return false;
+	_artyList[number] = [];
 
 	const color  = colors[number].options.hexa;
 	$("#toolbox #list #select").append(
 		'<option value="' + number + '" style="background-color: ' + color + ' ">' + 'Arty ' + (number + 1) +'</option>'
 	);
-	_artyList[number] = [];
+
+	// Change select box and color
+	$('#toolbox #list #select option[value="' + number + '"]').prop('selected', true);
+	$("#toolbox #list #select").css('background-color', color);
+
 
 });
 
