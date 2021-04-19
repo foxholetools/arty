@@ -27,7 +27,7 @@ body {
 
 #toolbox .arty {
 
-	border: 2px #95a5a6 solid;
+	border: 2px #bdc3c7 solid;
 	padding: 5px;
 	margin: 5px;
 
@@ -50,10 +50,8 @@ body {
 }
 
 #toolbox .arty.selected {
-
 	border-color: #2c3e50 !important;
 	background-color: #95a5a6;
-
 }
 
 #mapid .region-label {
@@ -63,4 +61,31 @@ body {
     color: white;
     text-align: center;
     font-size: 16px;
+}
+
+#toolbox .warden {
+	background-color: #2980b9;
+}
+
+#toolbox .warden.selected {
+	border-color: #2c3e50 !important;
+	background-color: #3498db;
+}
+
+
+#toolbox .colonial {
+	background-color: #27ae60;
+}
+
+#toolbox .colonial.selected {
+	border-color: #2c3e50 !important;
+	background-color: #2ecc71;
+}
+
+#toolbox #cible {
+	background-color: #c0392b;
+}
+
+#toolbox #cible.selected {
+	background-color: #e74c3c;
 }

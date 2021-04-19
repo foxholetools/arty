@@ -3,11 +3,14 @@ let _secondLatLng, _secondPoint, _secondMarker, _secondMinRange, _secondMaxRange
 let _thirdMinRange, _thirdMaxRange;
 let _artyTool;
 
+let _artyList = [];
+let _artyNumber = 0;
+
 // koronides 120mm (colis) : 100m / 250m
-// lariat 120mm (warden) 100m / 300m
-// thunderbolt 150mm (colis) 150m / 350m
-// exalt 150mm (warden) 150m / 300m
-// storm cannon 400m / 100m
+// lariat 120mm (warden) : 100m / 300m
+// thunderbolt 150mm (colis) : 150m / 350m
+// exalt 150mm (warden) : 150m / 300m
+// storm cannon : 400m / 100m
 const ranges = {
 	'koronides120mm': {
 		min: 2.5,
@@ -19,7 +22,7 @@ const ranges = {
 	},
 	'thunderbolt150mm': {
 		min: 3.8,
-		max: 8.8 
+		max: 8.8
 	},
 	'exalt150mm': {
 		min: 3.8,
@@ -53,9 +56,11 @@ $(document).on('click', '#toolbox .arty', function(e) {
 
 map.on('click', function(e) {
 
+	if (_artyTool == undefined) return false;
+
 	if (_artyTool !== undefined && map.getZoom() !== 5) {
 		toastr.error('Please zoom in as much as possible !', 'Error', {
-			positionClass: 'toast-bottom-right',
+			positionClass: 'toast-bottom-left',
 			progressBar: true,
 		});
 		return false;
@@ -70,17 +75,29 @@ map.on('click', function(e) {
 		_firstLatLng = e.latlng;
 	    _firstPoint = e.layerPoint;
 
-		_firstMinRange = L.circle(e.latlng, { radius: ranges[_artyTool].min, color: '#e74c3c' }).addTo(map);
-		_firstMaxRange = L.circle(e.latlng, { radius: ranges[_artyTool].max, color: '#2ecc71' }).addTo(map);
+		_firstMinRange = L.circle(e.latlng, {
+			radius: ranges[_artyTool].min,
+			color: '#e74c3c',
+			draggable: true
+		}).addTo(map);
+
+		_firstMaxRange = L.circle(e.latlng, {
+			radius: ranges[_artyTool].max,
+			interactive: true,
+			color: '#2ecc71'
+		}).addTo(map);
 
 	    _firstMarker = L.marker(_firstLatLng, {
 	 		icon: blueIcon
 	    }).addTo(map);
 
 	    toastr.success('Artillery point has been added.', 'Success', {
-			positionClass: 'toast-bottom-right',
+			positionClass: 'toast-bottom-left',
 			progressBar: true,
 		});
+
+		$('#toolbox .arty').removeClass('selected');
+		_artyTool = undefined;
 
 	} else if (_artyTool !== undefined) {
 
@@ -96,7 +113,8 @@ map.on('click', function(e) {
 		azimut = Math.floor(azimut);
 
 		_secondMarker = L.marker(_secondLatLng, {
-			icon: redIcon
+			icon: redIcon,
+			draggable: true
 		})
 		.addTo(map);
 
@@ -105,7 +123,7 @@ map.on('click', function(e) {
 		}
 
 		toastr.success('Cible point has been added.', 'Success', {
-			positionClass: 'toast-bottom-right',
+			positionClass: 'toast-bottom-left',
 			progressBar: true,
 		});
 
