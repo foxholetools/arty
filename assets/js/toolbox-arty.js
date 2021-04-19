@@ -17,7 +17,7 @@ let colors = [
 // koronides 120mm (colis) : 100m / 250m
 // lariat 120mm (warden) : 100m / 300m
 // thunderbolt 150mm (colis) : 150m / 350m
-// exalt 150mm (warden) : 150m / 300m
+// exalt 150mm (warden) : 100m / 300m
 // storm cannon : 400m / 100m
 const ranges = {
 	'koronides120mm': {
@@ -36,7 +36,7 @@ const ranges = {
 		color: '#2ecc71'
 	},
 	'exalt150mm': {
-		min: 3.8,
+		min: 2.5,
 		max: 7.5,
 		color: '#3498db' 
 	},
