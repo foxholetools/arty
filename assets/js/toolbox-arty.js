@@ -318,10 +318,11 @@ $('#toolbox #tools #save').click(function(e)
 $('#toolbox #tools #share').click(function(e)
 {
 	const json = convertToJson();
+	const url = encodeURI(window.location.href + "?share=" + json);
 
 	const clipboard = $("<input>");
 	$("body").append(clipboard);
-	clipboard.val(window.location.href + "?share=" + json).select();
+	clipboard.val(url).select();
 	document.execCommand("copy");
 	clipboard.remove();
 
@@ -343,9 +344,9 @@ $('#toolbox #tools #trash').click(function(e)
 // On ready
 $(document).ready(function()
 {
-	const share = $.urlParam('share');
-
+	let share = $.urlParam('share');
 	if (share !== undefined && share !== null) {
+		share = decodeURI(share);
 		loadJson(share);
 	} else if (sessionStorage.hasOwnProperty('artyList')) {
 		const store = sessionStorage.getItem('artyList');
