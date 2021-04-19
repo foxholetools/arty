@@ -1,0 +1,66 @@
+/* CSS files add styling rules to your content */
+
+body {
+	font-family: "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	cursor: default;
+}
+
+#mapid {
+
+	height: 100vh;
+	z-index: 1;
+
+}
+
+#toolbox {
+
+	z-index: 2;
+
+	position: absolute;
+	top: 0;
+	right: 0;
+
+	height: calc(100% - 2px);
+}
+
+#toolbox .item {
+
+	border: 2px #95a5a6 solid;
+	padding: 5px;
+	margin: 5px;
+
+	background-color: #7f8c8d;
+
+}
+
+#toolbox .item:hover {
+
+	border-color: #2c3e50 !important;
+	cursor: pointer;
+
+}
+
+#toolbox .item img {
+
+	height: 50px;
+	width: 50px;
+
+}
+
+#toolbox .item.selected {
+
+	border-color: #2c3e50 !important;
+	background-color: #95a5a6;
+
+}
+
+#mapid .region-label {
+    white-space: nowrap;
+    text-shadow: 0 0 0.1em black, 0 0 0.1em black,
+          0 0 0.1em black,0 0 0.1em black,0 0 0.1em;
+    color: white;
+    text-align: center;
+    font-size: 16px;
+}

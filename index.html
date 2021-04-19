@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+        <title>Foxhole Map Tiles</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+        <link rel="stylesheet" href="assets/css/reset.css">
+        <link rel="stylesheet" href="assets/css/style.css">
+
+        <!-- leaflet -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+            integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+            crossorigin=""/>
+        <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+            integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+            crossorigin=""></script>
+        <script src="https://npmcdn.com/leaflet-geometryutil"></script>
+
+        <script
+              src="https://code.jquery.com/jquery-3.6.0.min.js"
+              integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+              crossorigin="anonymous"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" />
+
+    </head>  
+    <body>
+
+        <div id="toolbox">
+            <div class="item selected" id="koronides120mm">
+                <img src="assets/images/koronides_120mm.png">
+            </div>
+            <div class="item" id="lariat120mm">
+                <img src="assets/images/lariat_120mm.png">
+            </div>
+            <div class="item" id="thunderbolt150mm">
+                <img src="assets/images/thunderbolt_150mm.png">
+            </div>
+            <div class="item" id="exalt150mm">
+                <img src="assets/images/exalt_150mm.png">
+            </div>
+            <div class="item" id="stormCannon">
+                <img src="assets/images/storm_cannon.png">
+            </div>
+            <div class="item" id="cible">                
+                <img src="assets/images/cible.png">
+            </div>
+        </div>
+        <div id="mapid"></div>
+        <div id="backgroundPane"></div>
+
+        <!-- Data -->
+        <script src="assets/js/mapData.js"></script>
+        <script src="assets/js/iconData.js"></script>
+        <!-- Map -->
+        <script src="assets/js/warMap.js"></script>
+        <script src="assets/js/mapRegions.js"></script>
+        <!-- ToolBox -->
+        <script src="assets/js/toolbox.js"></script>
+
+    </body>
+</html>
