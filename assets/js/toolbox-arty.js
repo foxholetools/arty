@@ -1,7 +1,7 @@
 let _firstLatLng, _firstPoint, _firstMarker, _firstMinRange, _firstMaxRange;
 let _secondLatLng, _secondPoint, _secondMarker, _secondMinRange, _secondMaxRange;
 let _thirdMinRange, _thirdMaxRange;
-let _tool;
+let _artyTool;
 
 // koronides 120mm (colis) : 100m / 250m
 // lariat 120mm (warden) 100m / 300m
@@ -48,7 +48,7 @@ $(document).on('click', '#toolbox .arty', function(e) {
 	$('#toolbox .arty').removeClass('selected');
 	$(this).addClass('selected');
 	var tool = $(this).attr('id');
-	_tool = tool;
+	_artyTool = tool;
 });
 
 map.on('click', function(e) {
@@ -61,7 +61,7 @@ map.on('click', function(e) {
 		return false;
 	}
 
-	if (_tool !== 'cible') { 
+	if (_artyTool !== 'cible') { 
 
 		// Clear
 		if(_firstMarker != undefined) _firstMarker.remove(map);
@@ -82,7 +82,7 @@ map.on('click', function(e) {
 			progressBar: true,
 		});
 
-	} else {
+	} else if (_artyTool !== undefined) {
 
 		if(_secondMarker !== undefined) _secondMarker.remove(map);
 
