@@ -180,13 +180,12 @@ $('#toolbox #list #remove').click(function(e)
 });
 
 // On ready
-$(document).ready(function() {
-
+$(document).ready(function()
+{
 	const color = colors[_artyNumber].options.hexa;
     _artyList[_artyNumber] = {};
 	$("#toolbox #list #select").append(
 		'<option value="' + _artyNumber + '" style="background-color: ' + color + ' ">' + 'Arty ' + (_artyNumber + 1) +'</option>'
 	);
 	$("#toolbox #list #select").css('background-color', color);
-
 });
