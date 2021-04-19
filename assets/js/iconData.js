@@ -4,7 +4,8 @@ const blueIcon = new L.Icon({
 	iconSize: [25, 41],
 	iconAnchor: [12, 41],
 	popupAnchor: [1, -34],
-	shadowSize: [41, 41]
+	shadowSize: [41, 41],
+	hexa: '#2A81CB'
 });
 
 const goldIcon = new L.Icon({
@@ -13,7 +14,8 @@ const goldIcon = new L.Icon({
 	iconSize: [25, 41],
 	iconAnchor: [12, 41],
 	popupAnchor: [1, -34],
-	shadowSize: [41, 41]
+	shadowSize: [41, 41],
+	hexa: '#FFD326'
 });
 
 const redIcon = new L.Icon({
@@ -22,7 +24,8 @@ const redIcon = new L.Icon({
 	iconSize: [25, 41],
 	iconAnchor: [12, 41],
 	popupAnchor: [1, -34],
-	shadowSize: [41, 41]
+	shadowSize: [41, 41],
+	hexa: '#CB2B3E'
 });
 
 const greenIcon = new L.Icon({
@@ -31,7 +34,8 @@ const greenIcon = new L.Icon({
 	iconSize: [25, 41],
 	iconAnchor: [12, 41],
 	popupAnchor: [1, -34],
-	shadowSize: [41, 41]
+	shadowSize: [41, 41],
+	hexa: '#2AAD27'
 });
 
 const orangeIcon = new L.Icon({
@@ -40,7 +44,8 @@ const orangeIcon = new L.Icon({
 	iconSize: [25, 41],
 	iconAnchor: [12, 41],
 	popupAnchor: [1, -34],
-	shadowSize: [41, 41]
+	shadowSize: [41, 41],
+	hexa: '#CB8427'
 });
 
 const yellowIcon = new L.Icon({
@@ -49,7 +54,8 @@ const yellowIcon = new L.Icon({
 	iconSize: [25, 41],
 	iconAnchor: [12, 41],
 	popupAnchor: [1, -34],
-	shadowSize: [41, 41]
+	shadowSize: [41, 41],
+	hexa: '#CAC428'
 });
 
 const violetIcon = new L.Icon({
@@ -58,7 +64,8 @@ const violetIcon = new L.Icon({
 	iconSize: [25, 41],
 	iconAnchor: [12, 41],
 	popupAnchor: [1, -34],
-	shadowSize: [41, 41]
+	shadowSize: [41, 41],
+	hexa: '#9C2BCB'
 });
 
 const greyIcon = new L.Icon({
@@ -67,7 +74,8 @@ const greyIcon = new L.Icon({
 	iconSize: [25, 41],
 	iconAnchor: [12, 41],
 	popupAnchor: [1, -34],
-	shadowSize: [41, 41]
+	shadowSize: [41, 41],
+	hexa: '#7B7B7B'
 });
 
 const blackIcon = new L.Icon({
@@ -76,5 +84,6 @@ const blackIcon = new L.Icon({
 	iconSize: [25, 41],
 	iconAnchor: [12, 41],
 	popupAnchor: [1, -34],
-	shadowSize: [41, 41]
+	shadowSize: [41, 41],
+	hexa: '#3D3D3D'
 });

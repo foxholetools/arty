@@ -45,26 +45,24 @@ const ranges = {
 function clearRange() {
 
 	let arty = _artyList[_artyNumber];
-
-	console.log(arty);
-
 	if (arty.first !== undefined) {
-		arty.first.minRange.remove(map);
-		arty.first.minRange.remove(map);
-	}
-
-	if (arty.second !== undefined) {
 		arty.first.minRange.remove(map);
 		arty.first.maxRange.remove(map);
 	}
 
 }
 
-$(document).on('click', '#toolbox .arty', function(e) {
-	$('#toolbox .arty').removeClass('selected');
-	$(this).addClass('selected');
-	var tool = $(this).attr('id');
-	_artyTool = tool;
+$('#toolbox #btn .btn').click(function(e) {
+	let element = $(this);
+	if (element.hasClass('selected')) {
+		element.removeClass('selected');
+		_artyTool = undefined;
+	} else {
+		$('#toolbox .btn').removeClass('selected');
+		element.addClass('selected');
+		var tool = $(this).attr('id');
+		_artyTool = tool;	
+	}
 });
 
 map.on('click', function(e) {
@@ -79,7 +77,6 @@ map.on('click', function(e) {
 		return false;
 	}
 
-	if (_artyList[_artyNumber] == undefined) _artyList[_artyNumber] = {};
 	let arty = _artyList[_artyNumber];
 
 	if (_artyTool !== 'cible') {
@@ -114,7 +111,7 @@ map.on('click', function(e) {
 			progressBar: true,
 		});
 
-		$('#toolbox .arty').removeClass('selected');
+		$('#toolbox .btn').removeClass('selected');
 		_artyTool = undefined;
 
 	} else if (_artyTool !== undefined) {
@@ -150,4 +147,44 @@ map.on('click', function(e) {
 
 	}
 	
+});
+
+// 
+$('#toolbox #list #select').change(function()
+{
+	const value = $('#toolbox #list #select').val();
+	_artyNumber = value;
+	const color = colors[value].options.hexa;
+	$("#toolbox #list #select").css('background-color', color);
+});
+
+$('#toolbox #list #add').click(function(e)
+{
+	const number = _artyList.length;
+	if (colors[number] == undefined) return false;
+
+	const color  = colors[number].options.hexa;
+	$("#toolbox #list #select").append(
+		'<option value="' + number + '" style="background-color: ' + color + ' ">' + 'Arty ' + (number + 1) +'</option>'
+	);
+	_artyList[number] = [];
+
+});
+
+$('#toolbox #list #remove').click(function(e)
+{
+	clearRange();
+	if(_artyList[_artyNumber].first.marker != undefined) arty.first.marker.remove(map);
+});
+
+// On ready
+$(document).ready(function() {
+
+	const color = colors[_artyNumber].options.hexa;
+    _artyList[_artyNumber] = {};
+	$("#toolbox #list #select").append(
+		'<option value="' + _artyNumber + '" style="background-color: ' + color + ' ">' + 'Arty ' + (_artyNumber + 1) +'</option>'
+	);
+	$("#toolbox #list #select").css('background-color', color);
+
 });

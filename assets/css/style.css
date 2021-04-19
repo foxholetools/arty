@@ -8,10 +8,8 @@ body {
 }
 
 #mapid {
-
 	height: 100vh;
 	z-index: 1;
-
 }
 
 #toolbox {
@@ -23,9 +21,10 @@ body {
 	right: 0;
 
 	height: calc(100% - 2px);
+
 }
 
-#toolbox .arty {
+#toolbox .btn {
 
 	border: 2px #bdc3c7 solid;
 	padding: 5px;
@@ -35,21 +34,21 @@ body {
 
 }
 
-#toolbox .arty:hover {
+#toolbox .btn:hover {
 
 	border-color: #2c3e50 !important;
 	cursor: pointer;
 
 }
 
-#toolbox .arty img {
+#toolbox .btn img {
 
 	height: 50px;
 	width: 50px;
 
 }
 
-#toolbox .arty.selected {
+#toolbox .btn.selected {
 	border-color: #2c3e50 !important;
 	background-color: #95a5a6;
 }
@@ -72,7 +71,6 @@ body {
 	background-color: #3498db;
 }
 
-
 #toolbox .colonial {
 	background-color: #27ae60;
 }
@@ -88,4 +86,36 @@ body {
 
 #toolbox #cible.selected {
 	background-color: #e74c3c;
+}
+
+#toolbox #list {
+	margin-top: 20px;
+}
+
+select {
+
+	appearance: none;
+	
+	height: auto;
+	margin: 0;
+	border-radius: 0;
+
+	border: 2px #bdc3c7 solid;
+	padding: 5px;
+	margin: 5px;
+
+	color: #fff;
+	font-weight: bold;
+	background-color: #7f8c8d;
+
+	overflow: hidden;
+	text-overflow: ellipsis;
+
+}
+
+option:hover,
+option:focus,
+option:active,
+option:checked {
+  background-color: red;
 }
