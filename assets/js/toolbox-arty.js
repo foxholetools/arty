@@ -61,7 +61,7 @@ map.on('click', function(e) {
 		return false;
 	}
 
-	if (_artyTool !== 'cible') { 
+	if (_artyTool !== 'cible') {
 
 		// Clear
 		if(_firstMarker != undefined) _firstMarker.remove(map);
@@ -70,10 +70,10 @@ map.on('click', function(e) {
 		_firstLatLng = e.latlng;
 	    _firstPoint = e.layerPoint;
 
-		_firstMinRange = L.circle(e.latlng, { radius: ranges[_tool].min, color: '#e74c3c' }).addTo(map);
-		_firstMaxRange = L.circle(e.latlng, { radius: ranges[_tool].max, color: '#2ecc71' }).addTo(map);
+		_firstMinRange = L.circle(e.latlng, { radius: ranges[_artyTool].min, color: '#e74c3c' }).addTo(map);
+		_firstMaxRange = L.circle(e.latlng, { radius: ranges[_artyTool].max, color: '#2ecc71' }).addTo(map);
 
-	    _firstMarker = L.marker(_firstLatLng,{
+	    _firstMarker = L.marker(_firstLatLng, {
 	 		icon: blueIcon
 	    }).addTo(map);
 
