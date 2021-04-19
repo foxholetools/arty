@@ -174,7 +174,9 @@ $('#toolbox #list #add').click(function(e)
 $('#toolbox #list #remove').click(function(e)
 {
 	clearRange();
-	if(_artyList[_artyNumber].first.marker != undefined) arty.first.marker.remove(map);
+	const arty = _artyList[_artyNumber];
+	if(arty.first.marker !== undefined) arty.first.marker.remove(map);
+	if(arty.second.marker !== undefined) arty.second.marker.remove(map);
 });
 
 // On ready
