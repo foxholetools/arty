@@ -98,7 +98,7 @@ function loadJson(json)
 		{
 			arty.first = {};
 			const first = element.first;
-			const latLng = L.latLng(first.latLng, first.latLng);
+			const latLng = L.latLng(first.latLng.lat, first.latLng.lng);
 			const point = L.point(first.point.x, first.point.y);
 			addArty(arty, first.type, latLng, point);
 		} else {
@@ -114,17 +114,17 @@ function loadJson(json)
 			arty.second = {};
 		}
 
-		if (element.first !== undefined || element.second !== undefined)
-		{
-			const color  = colors[number].options.hexa;
-			$("#toolbox #tools #select").append(
-				'<option value="' + number + '" style="background-color: ' + color + ' ">' + 'Arty ' + (number + 1) +'</option>'
-			);
-		}
+		// Add option to select
+		const color  = colors[number].options.hexa;
+		$("#toolbox #tools #select").append(
+			'<option value="' + number + '" style="background-color: ' + color + ' ">' + 'Arty ' + (number + 1) +'</option>'
+		);
 
 		number = number + 1;
 
 	});
+
+	console.log(_artyList.length);
 
 	// Change select box and color
 	const color  = colors[0].options.hexa;
@@ -336,11 +336,9 @@ $(document).ready(function()
 	const share = $.urlParam('share');
 
 	if (share !== undefined && share !== null) {
-		console.log("share", share);
 		loadJson(share);
 	} else if (sessionStorage.hasOwnProperty('artyList')) {
 		const store = sessionStorage.getItem('artyList');
-		console.log("store", store);
 		loadJson(store);
 	} else {
 		const color = colors[_artyNumber].options.hexa;
