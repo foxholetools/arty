@@ -1,10 +1,18 @@
-let _firstLatLng, _firstPoint, _firstMarker, _firstMinRange, _firstMaxRange;
-let _secondLatLng, _secondPoint, _secondMarker, _secondMinRange, _secondMaxRange;
-let _thirdMinRange, _thirdMaxRange;
 let _artyTool;
-
 let _artyList = [];
 let _artyNumber = 0;
+
+let colors = [
+	blueIcon,
+	redIcon,
+	greenIcon,
+	orangeIcon,
+	yellowIcon,
+	goldIcon,
+	violetIcon,
+	greyIcon,
+	blackIcon
+];
 
 // koronides 120mm (colis) : 100m / 250m
 // lariat 120mm (warden) : 100m / 300m
@@ -36,14 +44,19 @@ const ranges = {
 
 function clearRange() {
 
-	if (_firstMinRange !== undefined) _firstMinRange.remove(map);
-	if (_firstMaxRange !== undefined) _firstMaxRange.remove(map);
+	let arty = _artyList[_artyNumber];
 
-	if (_secondMinRange !== undefined) _secondMinRange.remove(map);
-	if (_secondMaxRange !== undefined) _secondMaxRange.remove(map);
+	console.log(arty);
 
-	if (_thirdMinRange !== undefined) _thirdMinRange.remove(map);
-	if (_thirdMaxRange !== undefined) _thirdMaxRange.remove(map);
+	if (arty.first !== undefined) {
+		arty.first.minRange.remove(map);
+		arty.first.minRange.remove(map);
+	}
+
+	if (arty.second !== undefined) {
+		arty.first.minRange.remove(map);
+		arty.first.maxRange.remove(map);
+	}
 
 }
 
@@ -66,29 +79,34 @@ map.on('click', function(e) {
 		return false;
 	}
 
+	if (_artyList[_artyNumber] == undefined) _artyList[_artyNumber] = {};
+	let arty = _artyList[_artyNumber];
+
 	if (_artyTool !== 'cible') {
 
 		// Clear
-		if(_firstMarker != undefined) _firstMarker.remove(map);
 		clearRange();
+		if (_artyList[_artyNumber].first == undefined) _artyList[_artyNumber].first = {}; // Create if not exit
+		if(arty.first.marker != undefined) arty.first.marker.remove(map);
 
-		_firstLatLng = e.latlng;
-	    _firstPoint = e.layerPoint;
+		arty.first.latLng = e.latlng;
+	    arty.first.point = e.layerPoint;
 
-		_firstMinRange = L.circle(e.latlng, {
+		arty.first.minRange = L.circle(e.latlng, {
 			radius: ranges[_artyTool].min,
 			color: '#e74c3c',
 			draggable: true
 		}).addTo(map);
 
-		_firstMaxRange = L.circle(e.latlng, {
+		arty.first.maxRange = L.circle(e.latlng, {
 			radius: ranges[_artyTool].max,
 			interactive: true,
 			color: '#2ecc71'
 		}).addTo(map);
 
-	    _firstMarker = L.marker(_firstLatLng, {
-	 		icon: blueIcon
+	    arty.first.marker = L.marker(arty.first.latLng, {
+	 		icon: colors[_artyNumber],
+			title: 'Arty ' + (_artyNumber + 1)
 	    }).addTo(map);
 
 	    toastr.success('Artillery point has been added.', 'Success', {
@@ -101,25 +119,28 @@ map.on('click', function(e) {
 
 	} else if (_artyTool !== undefined) {
 
-		if(_secondMarker !== undefined) _secondMarker.remove(map);
+		if (_artyList[_artyNumber].second == undefined) _artyList[_artyNumber].second = {}; // Create if not exit
+		if(arty.second.marker !== undefined) arty.second.marker.remove(map);
 
-	    _secondLatLng = e.latlng;
-	    _secondPoint = e.layerPoint;
-	    
-		let distance = L.GeometryUtil.length([_firstPoint, _secondPoint]);
-		distance = Math.floor(distance * 1.25);
+	    arty.second.latLng = e.latlng;
+	    arty.second.point = e.layerPoint;
 
-		let azimut = L.GeometryUtil.angle(map, _firstLatLng, _secondLatLng);
-		azimut = Math.floor(azimut);
-
-		_secondMarker = L.marker(_secondLatLng, {
-			icon: redIcon,
-			draggable: true
+		arty.second.marker = L.marker(arty.second.latLng, {
+			icon: colors[_artyNumber],
+			draggable: true,
+			title: 'Cible ' + (_artyNumber + 1) 
 		})
 		.addTo(map);
 
-		if (_firstLatLng !== undefined && _secondLatLng !== undefined) {
-		    _secondMarker.bindPopup('Dist. ' + distance + 'm<br/>Azim. ' + azimut).openPopup();
+		if (arty.first.latLng !== undefined && arty.second.latLng !== undefined) {
+    
+			let distance = L.GeometryUtil.length([arty.first.point, arty.second.point]);
+			distance = Math.floor(distance * 1.25);
+
+			let azimut = L.GeometryUtil.angle(map, arty.first.latLng, arty.second.latLng);
+			azimut = Math.floor(azimut);
+
+		    arty.second.marker.bindPopup('Dist. ' + distance + 'm<br/>Azim. ' + azimut).openPopup();
 		}
 
 		toastr.success('Cible point has been added.', 'Success', {
