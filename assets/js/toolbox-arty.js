@@ -22,23 +22,28 @@ let colors = [
 const ranges = {
 	'koronides120mm': {
 		min: 2.5,
-		max: 6.3
+		max: 6.3,
+		color: '#2ecc71'
 	},
 	'lariat120mm': {
 		min: 2.5,
-		max: 7.5 
+		max: 7.5,
+		color: '#3498db'
 	},
 	'thunderbolt150mm': {
 		min: 3.8,
-		max: 8.8
+		max: 8.8,
+		color: '#2ecc71'
 	},
 	'exalt150mm': {
 		min: 3.8,
-		max: 7.5 
+		max: 7.5,
+		color: '#3498db' 
 	},
 	'stormCannon': {
 		min: 10,
-		max: 25 
+		max: 25,
+		color: '#ecf0f1'
 	},
 }
 
@@ -89,22 +94,23 @@ map.on('click', function(e) {
 		arty.first.latLng = e.latlng;
 	    arty.first.point = e.layerPoint;
 
+	    const config = ranges[_artyTool];
+
 		arty.first.minRange = L.circle(e.latlng, {
-			radius: ranges[_artyTool].min,
-			color: '#e74c3c',
-			draggable: true
+			radius: config.min,
+			color: '#c0392b',
+			weight: 1
 		}).addTo(map);
 
 		arty.first.maxRange = L.circle(e.latlng, {
-			radius: ranges[_artyTool].max,
-			interactive: true,
-			color: '#2ecc71'
+			radius: config.max,
+			color: config.color,		
+			weight: 1
 		}).addTo(map);
 
 	    arty.first.marker = L.marker(arty.first.latLng, {
-	 		icon: colors[_artyNumber],
-			title: 'Arty ' + (_artyNumber + 1)
-	    }).addTo(map);
+	 		icon: colors[_artyNumber]
+	    }).bindPopup('Arty ' + (_artyNumber + 1)).addTo(map);
 
 	    toastr.success('Artillery point has been added.', 'Success', {
 			positionClass: 'toast-bottom-left',
@@ -153,8 +159,8 @@ map.on('click', function(e) {
 $('#toolbox #list #select').change(function()
 {
 	const value = $('#toolbox #list #select').val();
-	_artyNumber = value;
-	const color = colors[value].options.hexa;
+	_artyNumber = parseInt(value);
+	const color = colors[_artyNumber].options.hexa;
 	$("#toolbox #list #select").css('background-color', color);
 });
 
