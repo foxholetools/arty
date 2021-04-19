@@ -119,9 +119,9 @@ function loadJson(json)
 
 		// Add option to select
 		const color  = colors[number].options.hexa;
-		// $("#toolbox #tools #select").append(
-		// 	'<option value="' + number + '" style="background-color: ' + color + ' ">' + 'Arty ' + (number + 1) +'</option>'
-		// );
+		$("#toolbox #tools #select").append(
+			'<option value="' + number + '" style="background-color: ' + color + ' ">' + 'Arty ' + (number + 1) +'</option>'
+		);
 
 		number = number + 1;
 
@@ -131,8 +131,8 @@ function loadJson(json)
 
 	// Change select box and color
 	const color  = colors[0].options.hexa;
-	// $('#toolbox #tools #select option[value="0"]').prop('selected', true);
-	// $("#toolbox #tools #select").css('background-color', color);
+	$('#toolbox #tools #select option[value="0"]').prop('selected', true);
+	$("#toolbox #tools #select").css('background-color', color);
 
 }
 
