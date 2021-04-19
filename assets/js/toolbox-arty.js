@@ -53,7 +53,7 @@ $(document).on('click', '#toolbox .arty', function(e) {
 
 map.on('click', function(e) {
 
-	if (map.getZoom() !== 5) {
+	if (_artyTool !== undefined && map.getZoom() !== 5) {
 		toastr.error('Please zoom in as much as possible !', 'Error', {
 			positionClass: 'toast-bottom-right',
 			progressBar: true,
