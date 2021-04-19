@@ -70,6 +70,7 @@ function convertToJson() {
 				type: element.first.type
 			}
 		}
+
 		if (element.second !== undefined) {
 			infos.second = {
 				latLng: element.second.latLng,
@@ -85,12 +86,50 @@ function convertToJson() {
 
 function loadJson(json)
 {
-
 	const data = JSON.parse(json);
+	let number = 0;
 
 	data.forEach(function(element) {
-		console.log(element);
+
+		_artyList[number] = [];
+
+		let arty = _artyList[number];
+		if (element.first !== undefined)
+		{
+			arty.first = {};
+			const first = element.first;
+			const latLng = L.latLng(first.latLng, first.latLng);
+			const point = L.point(first.point.x, first.point.y);
+			addArty(arty, first.type, latLng, point);
+		} else {
+			arty.first = {};
+		}
+		
+		if (element.second !== undefined)
+		{
+			arty.second = {};
+			const second = element.second;
+			addCible(arty, second.latLng, second.point);
+		} else {
+			arty.second = {};
+		}
+
+		if (element.first !== undefined || element.second !== undefined)
+		{
+			const color  = colors[number].options.hexa;
+			$("#toolbox #tools #select").append(
+				'<option value="' + number + '" style="background-color: ' + color + ' ">' + 'Arty ' + (number + 1) +'</option>'
+			);
+		}
+
+		number = number + 1;
+
 	});
+
+	// Change select box and color
+	const color  = colors[0].options.hexa;
+	$('#toolbox #tools #select option[value="0"]').prop('selected', true);
+	$("#toolbox #tools #select").css('background-color', color);
 
 }
 
@@ -131,8 +170,8 @@ function addCible(arty, latLng, point)
 	})
 	.addTo(map);
 
-	if (arty.first.latLng !== undefined && arty.second.latLng !== undefined) {
-    
+	if (arty.first.latLng !== undefined && arty.second.latLng !== undefined)
+	{
 		let distance = L.GeometryUtil.length([arty.first.point, arty.second.point]);
 		distance = Math.floor(distance * 1.25);
 
@@ -239,10 +278,18 @@ $('#toolbox #tools #add').click(function(e)
 // Remove "calque"
 $('#toolbox #tools #remove').click(function(e)
 {
-	clearRange();
 	const arty = _artyList[_artyNumber];
-	if(arty.first.marker !== undefined) arty.first.marker.remove(map);
-	if(arty.second.marker !== undefined) arty.second.marker.remove(map);
+	if(arty.first.marker !== undefined)
+	{
+		arty.first.marker.remove(map);
+		clearRange();
+		arty.first = undefined;
+	}
+	if(arty.second.marker !== undefined)
+	{
+		arty.second.marker.remove(map);
+		arty.second = undefined;
+	}
 
 	// Notification
 	toastr.success('Arty has been clear.', 'Success', {
@@ -286,19 +333,22 @@ $('#toolbox #tools #share').click(function(e)
 // On ready
 $(document).ready(function()
 {
-	const color = colors[_artyNumber].options.hexa;
-    _artyList[_artyNumber] = {};
-	$("#toolbox #tools #select").append(
-		'<option value="' + _artyNumber + '" style="background-color: ' + color + ' ">' + 'Arty ' + (_artyNumber + 1) +'</option>'
-	);
-	$("#toolbox #tools #select").css('background-color', color);
-
 	const share = $.urlParam('share');
-	const store = sessionStorage.getItem("artyList");
+
 	if (share !== undefined && share !== null) {
+		console.log("share", share);
 		loadJson(share);
-	} else if (store !== undefined) {
+	} else if (sessionStorage.hasOwnProperty('artyList')) {
+		const store = sessionStorage.getItem('artyList');
+		console.log("store", store);
 		loadJson(store);
+	} else {
+		const color = colors[_artyNumber].options.hexa;
+	    _artyList[_artyNumber] = {};
+		$("#toolbox #tools #select").append(
+			'<option value="' + _artyNumber + '" style="background-color: ' + color + ' ">' + 'Arty ' + (_artyNumber + 1) +'</option>'
+		);
+		$("#toolbox #tools #select").css('background-color', color);
 	}
 
 });
