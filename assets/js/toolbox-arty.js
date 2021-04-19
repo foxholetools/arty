@@ -44,8 +44,8 @@ function clearRange() {
 
 }
 
-$(document).on('click', '#toolbox .item', function(e) {
-	$('#toolbox .item').removeClass('selected');
+$(document).on('click', '#toolbox .arty', function(e) {
+	$('#toolbox .arty').removeClass('selected');
 	$(this).addClass('selected');
 	var tool = $(this).attr('id');
 	_tool = tool;

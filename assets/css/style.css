@@ -25,7 +25,7 @@ body {
 	height: calc(100% - 2px);
 }
 
-#toolbox .item {
+#toolbox .arty {
 
 	border: 2px #95a5a6 solid;
 	padding: 5px;
@@ -35,21 +35,21 @@ body {
 
 }
 
-#toolbox .item:hover {
+#toolbox .arty:hover {
 
 	border-color: #2c3e50 !important;
 	cursor: pointer;
 
 }
 
-#toolbox .item img {
+#toolbox .arty img {
 
 	height: 50px;
 	width: 50px;
 
 }
 
-#toolbox .item.selected {
+#toolbox .arty.selected {
 
 	border-color: #2c3e50 !important;
 	background-color: #95a5a6;
