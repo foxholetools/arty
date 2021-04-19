@@ -92,6 +92,7 @@ function loadJson(json)
 	data.forEach(function(element) {
 
 		_artyList[number] = [];
+		_artyNumber = number;
 
 		let arty = _artyList[number];
 		if (element.first !== undefined)
@@ -124,7 +125,7 @@ function loadJson(json)
 
 	});
 
-	console.log(_artyList.length);
+	_artyNumber = 0;
 
 	// Change select box and color
 	const color  = colors[0].options.hexa;
@@ -302,7 +303,7 @@ $('#toolbox #tools #remove').click(function(e)
 $('#toolbox #tools #save').click(function(e)
 {
 	const json = convertToJson();
-	sessionStorage.setItem("artyList", json);
+	sessionStorage.setItem('artyList', json);
 
 	// Notification
 	toastr.success('Arty has been saved.', 'Success', {
@@ -328,6 +329,13 @@ $('#toolbox #tools #share').click(function(e)
 		progressBar: true,
 	});
 
+});
+
+// Clear session storage
+$('#toolbox #tools #trash').click(function(e)
+{
+	sessionStorage.removeItem('artyList');
+	location.reload();
 });
 
 // On ready
