@@ -186,7 +186,9 @@ function addCible(color, latlng, layerPoint)
 
 function removeClible(color)
 {
-	if(_artyList[color] === undefined || _artyList[color].cible === undefined)
+	if(_artyList[color] === undefined ||
+		_artyList[color].cible === undefined ||
+		_artyList[color].cible.marker === undefined)
 	{
 		return false;
 	}

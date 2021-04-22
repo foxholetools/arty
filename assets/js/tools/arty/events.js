@@ -5,8 +5,7 @@ let mapData = {};
 */
 function forceClosePopups(e)
 {
-    $("#target-popup").hide();
-    $("#action-popup").hide();
+    $(".popup").hide();
     mapData = {};
 }
 
@@ -15,6 +14,10 @@ map.on('click', function(e)
     const element = $(e.originalEvent.target).attr('class');
     if (element !== 'leaflet-interactive' || map.getZoom() !== 5)
     {
+        toastr.error('Please zoom in as much as possible !', 'Error', {
+            positionClass: 'toast-bottom-rigth',
+            progressBar: true,
+        });
         return false;
     }
     $('#target-popup').hide();
@@ -87,5 +90,93 @@ $('#target-popup .colors .color').click(function(e)
             $("#target-popup #infos").html('Dist. ' + shotInfos.distance + 'm<br/>Azim. ' + shotInfos.azimut);
         }
     }
+});
 
+$('#toolbox #save').click( function(e)
+{
+    const artyList = exportData(_artyList, {
+        arty: [
+            'latlng',
+            'layerPoint',
+            'type',
+            'target'
+        ],
+        cible: [
+            'latlng',
+            'layerPoint'
+        ]
+    });
+
+    if (Object.keys(artyList).length === 0)
+    {
+        return false;
+    }
+
+    const json = JSON.stringify(artyList);
+    sessionStorage.setItem('artyList', json);
+
+    toastr.success('Maps has been saved.', 'Success', {
+        positionClass: 'toast-bottom-rigth',
+        progressBar: true,
+    });
+});
+
+// convert to Json for export data
+$('#toolbox #share').click(function(e)
+{
+    const artyList = exportData(_artyList, {
+        arty: [
+            'latlng',
+            'layerPoint',
+            'type',
+            'target'
+        ],
+        cible: [
+            'latlng',
+            'layerPoint'
+        ]
+    });
+
+    if (Object.keys(artyList).length === 0)
+    {
+        return false;
+    }
+
+    const json = JSON.stringify(artyList);
+    const url = encodeURI(window.location.href + "?share=" + json);
+
+    const clipboard = $("<input>");
+    $("body").append(clipboard);
+    clipboard.val(url).select();
+    document.execCommand("copy");
+    clipboard.remove();
+
+    toastr.success('The links have been copied to clipboard.', 'Success', {
+        positionClass: 'toast-bottom-rigth',
+        progressBar: true,
+    });
+});
+
+$('#toolbox #trash').click(function(e)
+{
+    sessionStorage.removeItem('artyList');
+    location.reload();
+
+    toastr.success('Map has ben clear.', 'Success', {
+        positionClass: 'toast-bottom-rigth',
+        progressBar: true,
+    });
+});
+
+// On ready
+$(document).ready(function()
+{
+    let share = $.urlParam('share');
+    if (share !== undefined && share !== null) {
+        share = decodeURI(share);
+        loadArtyMap(share);
+    } else if (sessionStorage.hasOwnProperty('artyList')) {
+        const store = sessionStorage.getItem('artyList');
+        loadArtyMap(store);
+    }
 });

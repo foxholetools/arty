@@ -1,40 +1,23 @@
 
-function exportData(data)
+function exportData(data, exportList)
 {
-    const toExport = [];
+    let toExport = {};
+    for (const [name, object] of Object.entries(data)) {
 
-    data.forEach(function(element)
-    {
+        toExport[name] = {}        
+        for (const [key, list] of Object.entries(exportList)) {
+            
+            if (object[key] !== undefined)
+            {
+                toExport[name][key] = {};
+                list.forEach(function(value)
+                {
+                    toExport[name][key][value] = object[key][value];
+                });
+            }
+        }
 
-    });
+    }
 
     return toExport;
-
 }
-
-// function convertToJson() {
-
-// 	const toSave = [];
-// 	_artyList.forEach(function(element)
-// 	{
-// 		let infos = {};
-// 		if (element.first !== undefined) {
-// 			infos.first = {
-// 				latLng: element.first.latLng,
-// 				point: element.first.point,
-// 				type: element.first.type
-// 			}
-// 		}
-
-// 		if (element.second !== undefined) {
-// 			infos.second = {
-// 				latLng: element.second.latLng,
-// 				point: element.second.point
-// 			}
-// 		}
-// 		toSave.push(infos);
-// 	});
-
-// 	return JSON.stringify(toSave);
-
-// }
