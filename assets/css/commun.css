@@ -1,0 +1,207 @@
+body {
+	font-family: "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	cursor: default;
+}
+
+/* Map config */
+#mapid {
+	height: 100vh;
+	z-index: 1;
+}
+
+.mapIcon {
+	padding: 5px;
+	border-radius: 35px;
+	background-size: 26px !important;
+}
+
+/* Border color */
+#mapid .region-label {
+    white-space: nowrap;
+    text-shadow: 0 0 0.1em black, 0 0 0.1em black,
+          0 0 0.1em black,0 0 0.1em black,0 0 0.1em;
+    color: white;
+    text-align: center;
+    font-size: 16px;
+}
+
+/* Change map cursor */
+.leaflet-interactive {
+	cursor: crosshair !important;
+}
+
+.leaflet-marker-draggable {
+	cursor: grab !important;
+}
+
+/* Popup */
+#popup {
+	display: none;
+	z-index: 2;
+	position: absolute;
+
+	padding: 5px;
+	background-color: rgba(66, 66, 66, 0.8);
+	border-radius: 5px;
+
+	width: 100px;
+}
+
+#popup #actions {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 5px;
+}
+
+/* Lines */
+.line-1 {
+	margin-right: 5px;
+}
+
+/* Btn */
+.btn {
+	padding: 6px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	border-radius: 40px;
+	height: 35px;
+	width: 35px;
+}
+
+.btn:hover {
+	box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+	cursor: pointer;
+}
+
+.btn img {
+	height: 35px;
+	width: 35px;
+}
+
+.btn.warden {
+	background-color: #2980b9;
+}
+
+.btn.warden:hover {
+	border-color: #2c3e50 !important;
+	background-color: #3498db;
+}
+
+.btn.colonial {
+	background-color: #27ae60;
+}
+
+.btn.colonial:hover {
+	border-color: #2c3e50 !important;
+	background-color: #2ecc71;
+}
+
+.btn.cible {
+	background-color: #c0392b;
+}
+
+.btn.cible:hover {
+	background-color: #e74c3c;
+}
+
+.btn.global {
+	background-color: #7f8c8d;
+}
+
+.btn.global:hover {	
+	background-color: #95a5a6;
+}
+
+/* Colors */
+#colors {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.color {
+	width: 20px;
+	height: 20px;
+	border-radius: 20px;
+	margin: 2px;
+	padding-bottom: 2px;
+}
+
+.color:hover {
+	box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+	cursor: pointer;
+}
+
+.color.current {
+	border: #bdc3c7 1px solid;
+}
+
+.blue {
+	background-color: #2A81CB !important;
+}
+
+.gold {
+	background-color: #FFD326 !important;
+}
+
+.red {
+	background-color: #CB2B3E !important;
+}
+
+.green {
+	background-color: #2AAD27 !important;
+}
+
+.orange {
+	background-color: #CB8427 !important;
+}
+
+.yellow {
+	background-color: #CAC428 !important;
+}
+
+.violet {
+	background-color: #9C2BCB !important;
+}
+
+.grey {
+	background-color: #7B7B7B !important;
+}
+
+.black {
+	background-color: #3D3D3D !important;
+}
+
+/* Arty icons */
+.koronides120mm {
+	background: url('../images/artys/koronides_120mm.png') no-repeat center;
+	background-size: 35px;
+}
+
+.lariat120mm {
+	background: url('../images/artys/lariat_120mm.png') no-repeat center;
+	background-size: 35px;
+}
+
+.thunderbolt150mm {
+	background: url('../images/artys/thunderbolt_150mm.png') no-repeat center;
+	background-size: 35px;
+}
+
+.exalt150mm {
+	background: url('../images/artys/exalt_150mm.png') no-repeat center;
+	background-size: 35px;
+}
+
+.stormCannon {
+	background: url('../images/artys/storm_cannon.png') no-repeat center;
+	background-size: 35px;
+}
+
+/* Icons */
+.cible {
+	background: url('../images/icons/cible.png') no-repeat center;
+	background-size: 35px;
+}
