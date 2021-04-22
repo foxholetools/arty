@@ -37,10 +37,36 @@
             integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g=="
             crossorigin="anonymous" />
 
+        <!-- font -->
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/hack-font/3.3.0/web/hack.min.css"
+            integrity="sha512-XgCw4Srl8lC1ECwcaHwAU0WnxQwHkqmInzg9wJLtGB7DRuMaXPuK2k9WJ2AwRDGdrgK9eJpZl2hUlLi2WQssmw=="
+            crossorigin="anonymous" />
+
     </head>
     <body>
 
-        <div id="popup">
+        <!-- Arty pop -->
+        <div id="target-popup" class="popup">
+            <div id="infos" class="popup-text"></div>
+            <div class="popup-text">
+                <p>Target</p>
+            </div>
+            <div id="colors">
+                <div class="color blue current" color="blue"></div>
+                <div class="color gold" color="gold"></div>
+                <div class="color red" color="red"></div>
+                <div class="color green" color="green"></div>
+                <div class="color orange" color="orange"></div>
+                <div class="color yellow" color="yellow"></div>
+                <div class="color violet" color="violet"></div>
+                <div class="color grey" color="grey"></div>
+                <div class="color black" color="black"></div>
+            </div>
+        </div>
+
+        <!-- Global popup -->
+        <div id="action-popup" class="popup">
             <div id="actions">
                 <div class="line-1">
                     <div class="btn warden lariat120mm" action="arty" name="lariat120mm"></div>
@@ -52,6 +78,9 @@
                     <div class="btn colonial thunderbolt150mm" action="arty" name="thunderbolt150mm"></div>
                     <div class="btn global stormCannon" action="arty" name="stormCannon"></div>
                 </div>
+            </div>
+            <div class="popup-text">
+                <p>Colors</p>
             </div>
             <div id="colors">
                 <div class="color blue current" color="blue"></div>
@@ -114,7 +143,6 @@
         <script src="assets/js/map/mapRegions.js"></script>
 
         <!-- Core -->
-        <script src="assets/js/commun.js"></script>
         <!-- <script src="assets/js/export.js"></script> -->
         <!-- <script src="assets/js/load.js"></script> -->
 

@@ -1,7 +1,61 @@
 let _artyList = {};
 let artyColor = 'blue';
 
-function addArty(color, name, latlng, layerPoint)
+function targetPopup(e)
+{
+    if (map.getZoom() !== 5)
+    {
+        return false;
+    }
+	
+    $('#action-popup').hide();
+
+	const artyColor = e.target.color;
+    const toolbox = $('#target-popup');
+
+	const arty = _artyList[artyColor].arty;
+
+	// Hide actions
+	$('#colors .color').removeClass('current');
+	const element = $('#colors .' + arty.target);
+	element.addClass('current');
+
+	// 
+	if (_artyList[arty.target] !== undefined)
+	{
+		const target = _artyList[arty.target].cible;
+		const shotInfos = getShotInfo(arty, target);
+		if (shotInfos !== false)
+		{
+			console.log(shotInfos);
+			$("#target-popup #infos").html('Dist. ' + shotInfos.distance + 'm<br/>Azim. ' + shotInfos.azimut);
+		}
+	}
+
+	toolbox.css({left: e.containerPoint.x});
+	toolbox.css({top: e.containerPoint.y});
+	toolbox.show();
+}
+
+function getShotInfo(source, target)
+{
+	if (target !== undefined)
+	{
+		let distance = L.GeometryUtil.length([source.layerPoint, target.layerPoint]);
+		distance = Math.floor(distance * 1.25);
+
+		let azimut = L.GeometryUtil.angle(map, source.latlng, target.latlng);
+		azimut = Math.floor(azimut);
+
+		return {
+			azimut: azimut,
+			distance: distance
+		}
+	}
+	return false;
+}
+
+function addArty(color, name, target, latlng, layerPoint)
 {
 	if(_artyList[color] == undefined)
 	{
@@ -43,15 +97,32 @@ function addArty(color, name, latlng, layerPoint)
 	}).addTo(map);
 	data.arty.marker.color = color;
 
-	// Move cicle
+	// Set target
+	data.arty.target = target;
+
+	// Move arty
+	data.arty.marker.on('dragstart', function(e)
+	{
+		forceClosePopups();
+	});
+
 	data.arty.marker.on('move', function(e)
 	{
 		data.arty.minRange.setLatLng(e.latlng);
 		data.arty.maxRange.setLatLng(e.latlng);
 	});
 
-	// Close popup
-	forceClosePopup();
+	data.arty.marker.on('moveend', function(e)
+	{
+		const latlng = e.target._latlng;
+		const layerPoint = map.latLngToLayerPoint(latlng);
+		data.arty.latlng = latlng;
+		data.arty.layerPoint = layerPoint;
+	});
+
+	// On click
+	data.arty.marker.on('click', targetPopup);
+
 }
 
 function removeArty(color)
@@ -98,21 +169,19 @@ function addCible(color, latlng, layerPoint)
 	.addTo(map);
 	data.cible.marker.color = color;
 
-	data.cible.marker.on("dragend", drawDistance);
+	// Move
+	data.cible.marker.on('dragstart', function(e)
+	{
+		forceClosePopups();
+	});
 
-	// if (arty.first.latLng !== undefined && arty.second.latLng !== undefined)
-	// {
-	// 	let distance = L.GeometryUtil.length([arty.first.point, arty.second.point]);
-	// 	distance = Math.floor(distance * 1.25);
-
-	// 	let azimut = L.GeometryUtil.angle(map, arty.first.latLng, arty.second.latLng);
-	// 	azimut = Math.floor(azimut);
-
-	// 	arty.second.marker.bindPopup('Dist. ' + distance + 'm<br/>Azim. ' + azimut).openPopup();
-	// }
-	
-	// Close popup
-	forceClosePopup();
+	data.cible.marker.on('moveend', function(e)
+	{
+		const latlng = e.target._latlng;
+		const layerPoint = map.latLngToLayerPoint(latlng);
+		data.cible.latlng = latlng;
+		data.cible.layerPoint = layerPoint;
+	});
 }
 
 function removeClible(color)
@@ -126,9 +195,4 @@ function removeClible(color)
 	data.cible.marker.remove(map);
 
 	data.cible = {};
-}
-
-function drawDistance(e)
-{
-	console.log(e);
 }

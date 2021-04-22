@@ -1,34 +1,12 @@
-/* 
-#toolbox select {
-	width: calc(100% - 10px);
-	text-align: center;
-}
-
-#toolbox .btn.selected {
-	border-color: #2c3e50 !important;
-	background-color: #95a5a6;
-}
-
-#toolbox #tools {
-	margin-top: 20px;
-}
-
-#toolbox #list {
+#action-popup #actions {
 	display: flex;
+	justify-content: center;
+	margin-bottom: 5px;
 }
 
-select {
-
-	border: 2px #bdc3c7 solid;
-	padding: 5px;
-	margin: 5px;
-
-	color: #fff;
-	font-weight: bold;
-	text-align: center;
-
+/* Colors */
+#action-popup #colors, #target-popup #colors {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
 }
-
-select * {
-	background-color: red;
-} */

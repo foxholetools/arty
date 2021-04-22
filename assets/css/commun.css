@@ -1,5 +1,5 @@
 body {
-	font-family: "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;
+	font-family: Hack, sans-serif;
 	margin: 0;
 	padding: 0;
 	cursor: default;
@@ -38,11 +38,11 @@ body {
 }
 
 .leaflet-drag-target {
-	cursor: grab !important;
+	cursor: grab  !important;
 }
 
 /* Popup */
-#popup {
+.popup {
 	display: none;
 	z-index: 2;
 	position: absolute;
@@ -54,10 +54,11 @@ body {
 	width: 100px;
 }
 
-#popup #actions {
-	display: flex;
-	justify-content: center;
-	margin-bottom: 5px;
+.popup-text {
+	text-align: center;
+	color: #fff;
+	margin: 10px 0 5px 0;
+	font-size: 15px;
 }
 
 /* Lines */
@@ -120,12 +121,6 @@ body {
 }
 
 /* Colors */
-#colors {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-}
-
 .color {
 	width: 20px;
 	height: 20px;
