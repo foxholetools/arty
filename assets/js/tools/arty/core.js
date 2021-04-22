@@ -32,8 +32,8 @@ function targetPopup(e)
 		}
 	}
 
-	toolbox.css({left: e.containerPoint.x});
-	toolbox.css({top: e.containerPoint.y});
+	toolbox.css({ left: e.containerPoint.x });
+	toolbox.css({ top: e.containerPoint. y});
 	toolbox.show();
 }
 
@@ -120,6 +120,12 @@ function addArty(color, name, target, latlng, layerPoint)
 		data.arty.layerPoint = layerPoint;
 	});
 
+	// Delete
+	data.arty.marker.on('contextmenu', function(e)
+	{
+		removeArty(color);
+	});
+
 	// On click
 	data.arty.marker.on('click', targetPopup);
 
@@ -139,7 +145,7 @@ function removeArty(color)
 	data.arty.minRange.remove(map);
 	data.arty.maxRange.remove(map);
 
-	data.arty = {};
+	data.arty = undefined;
 }
 
 function addCible(color, latlng, layerPoint)
@@ -182,6 +188,12 @@ function addCible(color, latlng, layerPoint)
 		data.cible.latlng = latlng;
 		data.cible.layerPoint = layerPoint;
 	});
+
+	// Delete
+	data.cible.marker.on('contextmenu', function(e)
+	{
+		removeClible(color);
+	});
 }
 
 function removeClible(color)
@@ -196,5 +208,5 @@ function removeClible(color)
 	let data = _artyList[color]; 
 	data.cible.marker.remove(map);
 
-	data.cible = {};
+	data.cible = undefined;
 }
