@@ -215,3 +215,13 @@ body {
 	background: url('../images/icons/range.png') no-repeat center;
 	background-size: 35px;
 }
+
+.save {
+	background: url('../images/icons/save.png') no-repeat center;
+	background-size: 35px;
+}
+
+.share {
+	background: url('../images/icons/share.png') no-repeat center;
+	background-size: 35px;
+}

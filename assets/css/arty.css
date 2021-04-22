@@ -10,3 +10,12 @@
 	flex-wrap: wrap;
 	justify-content: center;
 }
+
+/* Toolsbox */
+#toolbox {
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: calc(100% - 2px);
+}
