@@ -17,8 +17,9 @@ map.on('click', function(e)
 {
     if (map.getZoom() === 5)
     {
-        const toolbox = $("#popup");
-        if (toolbox.is(":visible"))
+        $('#popup .actions').show();
+        const toolbox = $('#popup');
+        if (toolbox.is(':visible'))
         {
             toolbox.hide();
         }

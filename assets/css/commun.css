@@ -15,6 +15,7 @@ body {
 	padding: 5px;
 	border-radius: 35px;
 	background-size: 26px !important;
+	/* cursor: pointer !important; */
 }
 
 /* Border color */
@@ -33,6 +34,10 @@ body {
 }
 
 .leaflet-marker-draggable {
+	cursor: pointer !important;
+}
+
+.leaflet-drag-target {
 	cursor: grab !important;
 }
 
