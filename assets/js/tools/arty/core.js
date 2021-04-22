@@ -1,5 +1,6 @@
 let _artyList = {};
 let artyColor = 'blue';
+let artyTarget = 'blue';
 
 function targetPopup(e)
 {
@@ -10,10 +11,10 @@ function targetPopup(e)
 	
     $('#action-popup').hide();
 
-	const artyColor = e.target.color;
+	artyTarget = e.target.color;
     const toolbox = $('#target-popup');
 
-	const arty = _artyList[artyColor].arty;
+	const arty = _artyList[artyTarget].arty;
 
 	// Hide actions
 	$('#colors .color').removeClass('current');
@@ -27,7 +28,6 @@ function targetPopup(e)
 		const shotInfos = getShotInfo(arty, target);
 		if (shotInfos !== false)
 		{
-			console.log(shotInfos);
 			$("#target-popup #infos").html('Dist. ' + shotInfos.distance + 'm<br/>Azim. ' + shotInfos.azimut);
 		}
 	}

@@ -12,6 +12,6 @@ const colorsData = {
 
 const factionsColorData = {
     warden: '#3498db',
-    collies: '#2ecc71',
+    colonial: '#27ae60',
     global: '#ecf0f1'
 };

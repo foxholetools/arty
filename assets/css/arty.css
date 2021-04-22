@@ -5,7 +5,7 @@
 }
 
 /* Colors */
-#action-popup #colors, #target-popup #colors {
+.colors {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;

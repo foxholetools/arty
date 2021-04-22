@@ -56,13 +56,36 @@ $('#actions .btn').click(function(e)
 
 });
 
-$('#colors .color').click(function(e)
+$('#action-popup .colors .color').click(function(e)
 {
-    $('#colors .color').removeClass('current');
+    $('#action-popup .colors .color').removeClass('current');
 
     const element = $(this);
     element.addClass('current');
 
     const color = element.attr('color');
     artyColor = color;
+});
+
+$('#target-popup .colors .color').click(function(e)
+{
+    $('#target-popup .colors .color').removeClass('current');
+
+    const element = $(this);
+    element.addClass('current');
+
+    const color = element.attr('color');
+    const arty = _artyList[artyTarget].arty;
+    arty.target = color;
+
+    if (_artyList[color] !== undefined)
+    {
+        const target = _artyList[color].cible;
+        const shotInfos = getShotInfo(arty, target);
+        if (shotInfos !== false)
+        {
+            $("#target-popup #infos").html('Dist. ' + shotInfos.distance + 'm<br/>Azim. ' + shotInfos.azimut);
+        }
+    }
+
 });

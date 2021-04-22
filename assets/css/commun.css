@@ -205,3 +205,13 @@ body {
 	background: url('../images/icons/cible.png') no-repeat center;
 	background-size: 35px;
 }
+
+.trash {
+	background: url('../images/icons/trash.png') no-repeat center;
+	background-size: 35px;
+}
+
+.range {
+	background: url('../images/icons/range.png') no-repeat center;
+	background-size: 35px;
+}
