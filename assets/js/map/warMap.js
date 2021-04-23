@@ -36,6 +36,10 @@ resourcesPane.style.zIndex = 608;
 const regionLabelsPane = map.createPane('regionLabelsPane');
 regionLabelsPane.style.zIndex = 620;
 
+const surbRegionLabelsPane = map.createPane('subRegionLabelsPane');
+surbRegionLabelsPane.style.zIndex = 620;
+surbRegionLabelsPane.style.display = 'none';
+
 const regionBordersPane = map.createPane('regionBordersPane');
 regionBordersPane.style.zIndex = 400;
 

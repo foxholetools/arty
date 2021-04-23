@@ -172,6 +172,18 @@ $('#toolbox #trash').click(function(e)
     });
 });
 
+$('#toolbox #infos').click(function(e)
+{
+    var staticPromises = regionsData.map(region => queryRegionStatic(region));
+    Promise.all(staticPromises).then(loadStaticMap);
+});
+
+$('#toolbox #building').click(function(e)
+{
+    var dynamicPromises = regionsData.map(region => queryRegionDynamic(region));
+    Promise.all(dynamicPromises).then(loadDynamicMap);
+});
+
 // On ready
 $(document).ready(function()
 {
@@ -183,4 +195,17 @@ $(document).ready(function()
         const store = sessionStorage.getItem('artyList');
         loadArtyMap(store);
     }
+});
+
+map.on('zoom', function(e)
+{
+    if (map.getZoom() !== 5)
+    {
+        $('.leaflet-subRegionLabels-pane').hide();
+    }
+    else
+    {
+        $('.leaflet-subRegionLabels-pane').show();
+    }
+
 });

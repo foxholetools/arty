@@ -15,7 +15,7 @@ const mapArray = [
     { id: 7, name: 'The Moors', center: [o.y+1.5*k, o.x-0.75*w] },
     { id: 8, name: 'The Heartlands', center: [o.y - 1.5 * k, o.x - 0.75 * w] },
     { id: 9, name: 'Loch Mór', center: [o.y - 0.5 * k, o.x - 0.75 * w] },
-    { id: 10,name: 'The Linn of Mercy', center: [o.y + 0.5 * k, o.x - 0.75 * w] },
+    { id: 10, name: 'The Linn of Mercy', center: [o.y + 0.5 * k, o.x - 0.75 * w] },
     { id: 11, name: 'Reaching Trail', center: [o.y + 2 * k, o.x] },
     { id: 12, name: 'Stonecradle', center: [o.y+k, o.x - 1.5 * w] },
     { id: 13, name: 'Farranac Coast', center: [o.y, o.x-1.5 * w] },

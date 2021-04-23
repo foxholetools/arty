@@ -1,4 +1,3 @@
-
 regionBorders.map(function(regionBorder)
 { 
     L.polygon(regionBorder, {
@@ -7,7 +6,6 @@ regionBorders.map(function(regionBorder)
         fillOpacity: 0
     }).addTo(map);
 });
-
 
 regionLabels.map(function(regionName)
 {

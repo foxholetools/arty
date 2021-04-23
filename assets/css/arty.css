@@ -19,3 +19,65 @@
     right: 0;
     height: calc(100% - 2px);
 }
+
+/* Arty icons */
+.koronides120mm {
+	background: url('../images/artys/koronides_120mm.png') no-repeat center;
+	background-size: 35px;
+}
+
+.lariat120mm {
+	background: url('../images/artys/lariat_120mm.png') no-repeat center;
+	background-size: 35px;
+}
+
+.thunderbolt150mm {
+	background: url('../images/artys/thunderbolt_150mm.png') no-repeat center;
+	background-size: 35px;
+}
+
+.exalt150mm {
+	background: url('../images/artys/exalt_150mm.png') no-repeat center;
+	background-size: 35px;
+}
+
+.stormCannon {
+	background: url('../images/artys/storm_cannon.png') no-repeat center;
+	background-size: 35px;
+}
+
+/* Icons */
+.cible {
+	background: url('../images/icons/cible.png') no-repeat center;
+	background-size: 35px;
+}
+
+.trash {
+	background: url('../images/icons/trash.png') no-repeat center;
+	background-size: 35px;
+}
+
+.range {
+	background: url('../images/icons/range.png') no-repeat center;
+	background-size: 35px;
+}
+
+.save {
+	background: url('../images/icons/save.png') no-repeat center;
+	background-size: 35px;
+}
+
+.share {
+	background: url('../images/icons/share.png') no-repeat center;
+	background-size: 35px;
+}
+
+.infos {
+	background: url('../images/icons/infos.png') no-repeat center;
+	background-size: 35px;
+}
+
+.building {
+	background: url('../images/icons/building.png') no-repeat center;
+	background-size: 35px;
+}

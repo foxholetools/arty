@@ -24,7 +24,7 @@ class MapItem
                 this.teamPrefix = 'Warden ';
                 break;
             default:
-                console.log('ERROR: Unknown TeamID - '+teamId);
+                console.log('ERROR: Unknown TeamID - ' + teamId);
         }
 
         switch(iconType)

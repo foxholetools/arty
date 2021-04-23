@@ -6,7 +6,7 @@ const MapIcon = L.Icon.extend({
     }
 });
 
-const mapIconBaseUrl = 'https://raw.githubusercontent.com/Kastow/Foxhole-Map-Tiles/master/Map%20Icons'; 
+const mapIconBaseUrl = 'assets/images/game'; 
 const MapIconList = {};
 
 /* Bases and Structures */
