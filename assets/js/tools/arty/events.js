@@ -89,6 +89,10 @@ $('#target-popup .colors .color').click(function(e)
         {
             $("#target-popup #infos").html('Dist. ' + shotInfos.distance + 'm<br/>Azim. ' + shotInfos.azimut);
         }
+        else
+        {
+            $("#target-popup #infos").html('Dist. 0m<br/>Azim. 0');
+        }
     }
 });
 
