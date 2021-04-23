@@ -10,8 +10,6 @@ function convertCoords(regionId, x, y)
 
 function loadStaticMap(apiReponse)
 {
-    const mapTextItem = [];
-
     apiReponse.forEach(function(region)
     {
         if(region === null)
@@ -34,7 +32,6 @@ function loadStaticMap(apiReponse)
         });
     });
 
-    return mapTextItem;
 }
 
 function loadDynamicMap(apiReponse)
@@ -54,7 +51,6 @@ function loadDynamicMap(apiReponse)
                 pane: mapItemObject.pane,
                 icon: mapItemObject.iconImage
             }).addTo(map);
-
         });
     });
 }

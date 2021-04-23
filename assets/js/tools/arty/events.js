@@ -172,16 +172,76 @@ $('#toolbox #trash').click(function(e)
     });
 });
 
+let displayInfos = false;
+let displayInfosExist = false;
 $('#toolbox #infos').click(function(e)
 {
-    var staticPromises = regionsData.map(region => queryRegionStatic(region));
-    Promise.all(staticPromises).then(loadStaticMap);
+    if (displayInfosExist == false)
+    {
+        var staticPromises = regionsData.map(region => queryRegionStatic(region));
+        Promise.all(staticPromises).then(loadStaticMap);
+        displayInfosExist = false;
+    }
+    
+    if (displayInfos === true)
+    {
+        $(this).removeClass('enabled');
+        $('.leaflet-subRegionLabels-pane').hide();
+    }
+    else
+    {
+        $(this).addClass('enabled');
+        if (map.getZoom() === 5)
+        {
+            $('.leaflet-subRegionLabels-pane').show();
+        }
+    }
+
+    displayInfos = !displayInfos;
+
 });
 
+let displayBuilding = false;
+let displayBuildingExist = false;
 $('#toolbox #building').click(function(e)
 {
-    var dynamicPromises = regionsData.map(region => queryRegionDynamic(region));
-    Promise.all(dynamicPromises).then(loadDynamicMap);
+    if (displayBuildingExist == false)
+    {
+        var dynamicPromises = regionsData.map(region => queryRegionDynamic(region));
+        Promise.all(dynamicPromises).then(loadDynamicMap);
+        displayBuildingExist = true;
+    }
+
+    if (displayBuilding)
+    {
+        $(this).removeClass('enabled');
+        $('.leaflet-resources-pane').hide();
+        $('.leaflet-structures-pane').hide();
+        $('.leaflet-bases-pane').hide();
+    }
+    else
+    {
+        $(this).addClass('enabled');
+        $('.leaflet-resources-pane').show();
+        $('.leaflet-structures-pane').show();
+        $('.leaflet-bases-pane').show();
+    }
+
+    displayBuilding = !displayBuilding;
+
+});
+
+map.on('zoom', function(e)
+{
+    if (map.getZoom() !== 5)
+    {
+        $('.leaflet-subRegionLabels-pane').hide();
+    }
+    else if(displayInfos)
+    {
+        $('.leaflet-subRegionLabels-pane').show();
+    }
+
 });
 
 // On ready
@@ -195,17 +255,4 @@ $(document).ready(function()
         const store = sessionStorage.getItem('artyList');
         loadArtyMap(store);
     }
-});
-
-map.on('zoom', function(e)
-{
-    if (map.getZoom() !== 5)
-    {
-        $('.leaflet-subRegionLabels-pane').hide();
-    }
-    else
-    {
-        $('.leaflet-subRegionLabels-pane').show();
-    }
-
 });

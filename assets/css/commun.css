@@ -96,6 +96,10 @@ body {
 	cursor: pointer;
 }
 
+.btn.enabled {
+	background-color: #b2bec3 !important;
+}
+
 .btn img {
 	height: 35px;
 	width: 35px;
