@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+        <title>Arty - Hexa | Foxhole Tools</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Core -->
+        <link rel="stylesheet" href="assets/css/reset.css">
+        <link rel="stylesheet" href="assets/css/commun.css">
+
+        <!-- Specific -->
+        <link rel="stylesheet" href="assets/css/arty.css">
+
+        <!-- leaflet -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+            integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+            crossorigin=""/>
+        <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+            integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+            crossorigin=""></script>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+              integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+              crossorigin="anonymous">
+        </script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+            integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+            crossorigin="anonymous">
+        </script>
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"
+            integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g=="
+            crossorigin="anonymous" />
+
+        <!-- font -->
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/hack-font/3.3.0/web/hack.min.css"
+            integrity="sha512-XgCw4Srl8lC1ECwcaHwAU0WnxQwHkqmInzg9wJLtGB7DRuMaXPuK2k9WJ2AwRDGdrgK9eJpZl2hUlLi2WQssmw=="
+            crossorigin="anonymous" />
+
+    </head>
+    <body>
+
+        <!-- Arty pop -->
+        <div id="target-popup" class="popup">
+            <div id="infos" class="popup-text">
+                Dist. 0m<br/>Azim. 0
+            </div>
+            <div class="popup-text">
+                <p>Target</p>
+            </div>
+            <div class="colors">
+                <div class="color blue current" color="blue"></div>
+                <div class="color gold" color="gold"></div>
+                <div class="color red" color="red"></div>
+                <div class="color green" color="green"></div>
+                <div class="color orange" color="orange"></div>
+                <div class="color yellow" color="yellow"></div>
+                <div class="color violet" color="violet"></div>
+                <div class="color grey" color="grey"></div>
+                <div class="color black" color="black"></div>
+            </div>
+        </div>
+
+        <!-- Global popup -->
+        <div id="action-popup" class="popup">
+            <div id="actions">
+                <div class="line-1">
+                    <div class="btn warden lariat120mm" action="arty" name="lariat120mm"></div>
+                    <div class="btn warden exalt150mm" action="arty" name="exalt150mm"></div>
+                    <div class="btn cible" action="cible"></div>
+                </div>
+                <div class="line-2">
+                    <div class="btn colonial koronides120mm" action="arty" name="koronides120mm"></div>
+                    <div class="btn colonial thunderbolt150mm" action="arty" name="thunderbolt150mm"></div>
+                    <div class="btn global stormCannon" action="arty" name="stormCannon"></div>
+                </div>
+            </div>
+            <div class="popup-text">
+                <p>Colors</p>
+            </div>
+            <div class="colors">
+                <div class="color blue current" color="blue"></div>
+                <div class="color gold" color="gold"></div>
+                <div class="color red" color="red"></div>
+                <div class="color green" color="green"></div>
+                <div class="color orange" color="orange"></div>
+                <div class="color yellow" color="yellow"></div>
+                <div class="color violet" color="violet"></div>
+                <div class="color grey" color="grey"></div>
+                <div class="color black" color="black"></div>
+            </div>
+        </div>
+
+        <!-- <div id="toolbox">           
+            <div class="btn global save" id="save"></div>
+            <div class="btn global share" id="share"></div>
+            <div class="btn global trash" id="trash"></div>
+            <div class="btn global infos" id="infos"></div>
+            <div class="btn global building" id="building"></div>
+            <div class="btn global range" id="range"></div>
+        </div> -->
+
+        </div>
+
+        <!-- Map -->
+        <div id="mapid"></div>
+        <div id="backgroundPane"></div>
+
+        <!-- Config -->
+        <script src="assets/js/config/iconData.js"></script>
+        <script src="assets/js/config/colorsData.js"></script>
+        <script src="assets/js/config/artyData.js"></script>
+        <script src="assets/js/config/hexaMap.js"></script>
+
+        <!-- Map -->
+        <script src="assets/js/map/regionsData.js"></script>
+        <script src="assets/js/map/mapData.js"></script>
+        <script src="assets/js/map/mapIcon.js"></script>
+        <script src="assets/js/map/mapItem.js"></script>
+        <script src="assets/js/map/mapItems.js"></script>
+
+        <script src="assets/js/map/warMap.js"></script>
+        <script src="assets/js/map/warApiData.js"></script>
+
+        <!-- Core -->
+        <script src="assets/js/core.js"></script>
+        <script src="assets/js/export.js"></script>
+
+        <!-- Plugins -->
+        <script src="assets/js/plugins/url.js"></script>
+
+        <!-- Arty -->
+        <script src="assets/js/tools/arty/load.js"></script>
+        <script src="assets/js/tools/arty/core.js"></script>
+        <script src="assets/js/tools/arty/events.js"></script>
+
+    </body>
+</html>

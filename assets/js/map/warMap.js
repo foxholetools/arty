@@ -11,16 +11,26 @@ const mapOptions = {
     center: [-128, 128],
     zoom: 3,
     minZoom: 2,
-    maxZoom: 5,
+    maxZoom: 7,
     zoomSnap: 1,
     wheelPxPerZoomLevel: 60,
 
-    maxBounds: [[-256,-50],[0,306]],
+    maxBounds: [
+        [-256, -50],
+        [0, 306]
+    ],
     maxBoundsViscosity: 1.0,
+    
+    // Set default layer
+    layers: [ defaultMap ]
 
 }
 
-let map = L.map('mapid',mapOptions).setView([ o.y, o.x ], 0);
+let map = L.map('mapid', mapOptions).setView([ o.y, o.x ], 0);
+if (baseMaps !== undefined)
+{
+    L.control.layers(baseMaps, {}).addTo(map);
+}
 
 // Pane
 const basesPane = map.createPane('basesPane');
@@ -47,13 +57,9 @@ regionBordersPane.style.zIndex = 400;
 const backgroundPane = map.createPane('backgroundPane');
 backgroundPane.style.zIndex = 100;
 
-// Map images
-L.tileLayer('https://raw.githubusercontent.com/Kastow/Foxhole-Map-Tiles/master/Tiles/{z}/{z}_{x}_{y}.png', {
-	zIndex: 200,
-}).addTo(map);
-
+// assets/images/world_map_bg.jpg
 L.imageOverlay(
-	'assets/images/world_map_bg.jpg',
+	'https://assets.foxhole.tools/images/map/worldbg.png',
 	[
 		[-349.538, -265.846],
         [93.538, 521.846]

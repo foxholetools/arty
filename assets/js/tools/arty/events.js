@@ -12,14 +12,6 @@ function forceClosePopups(e)
 map.on('click', function(e)
 {
     const element = $(e.originalEvent.target).attr('class');
-    if (element !== 'leaflet-interactive' || map.getZoom() !== 5)
-    {
-        toastr.error('Please zoom in as much as possible !', 'Error', {
-            positionClass: 'toast-bottom-rigth',
-            progressBar: true,
-        });
-        return false;
-    }
     $('#target-popup').hide();
 
     const toolbox = $('#action-popup');
@@ -191,10 +183,10 @@ $('#toolbox #infos').click(function(e)
     else
     {
         $(this).addClass('enabled');
-        if (map.getZoom() === 5)
-        {
+        // if (map.getZoom() >= minZoom)
+        // {
             $('.leaflet-subRegionLabels-pane').show();
-        }
+        // }
     }
 
     displayInfos = !displayInfos;
@@ -233,14 +225,14 @@ $('#toolbox #building').click(function(e)
 
 map.on('zoom', function(e)
 {
-    if (map.getZoom() !== 5)
-    {
-        $('.leaflet-subRegionLabels-pane').hide();
-    }
-    else if(displayInfos)
-    {
+    // if (map.getZoom() < minZoom)
+    // {
+    //     $('.leaflet-subRegionLabels-pane').hide();
+    // }
+    // else if(displayInfos)
+    // {
         $('.leaflet-subRegionLabels-pane').show();
-    }
+    // }
 
 });
 
