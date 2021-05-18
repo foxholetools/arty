@@ -100,13 +100,13 @@ function addArty(color, name, target, latlng, layerPoint)
 
     // Display range
     data.arty.minRange = L.circle(latlng, {
-        radius: config.min / 40,
+        radius: config.min / 47,
         color: '#c0392b',
         weight: 1
     }).addTo(map);
 
     data.arty.maxRange = L.circle(latlng, {
-        radius: config.max / 40,
+        radius: config.max / 47,
         color: factionColor,		
         weight: 1
     }).addTo(map);

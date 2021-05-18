@@ -1,10 +1,12 @@
 /*
-    koronides 120mm (colis) : 100m (2.5) / 250m (6.3)
-    lariat 120mm (warden) : 100m (2.5) / 300m (7.5)
-    thunderbolt 150mm (colis) : 150m (3.8) / 350m (8.8)
-    exalt 150mm (warden) : 100m (2.5) / 300m (7.5)
-    storm cannon : 400m (10) / 1000m (25)
+    koronides 120mm (colis) : 100m / 250m
+    lariat 120mm (warden) : 100m / 300m
+    thunderbolt 150mm (colis) : 150m / 350m
+    exalt 150mm (warden) : 100m / 300m
+    storm cannon : 400m / 1000m	
+	calcul : radis = distance / x
 */
+
 const artyData = {
 	'koronides120mm': {
 		min: 100,
