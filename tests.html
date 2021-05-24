@@ -325,15 +325,17 @@
                 const { distance, azimut } = convertInput(inputDistance, inputAzimut);
                 
                 const latlng = getLatLng(from, distance, azimut);
+                const layerPoint = map.latLngToLayerPoint(latlng);
 
                 if (_artyList.blue.cible === undefined)
-                {
-                    const layerPoint = map.latLngToLayerPoint(latlng);
+                {                    
                     addCible('blue', latlng, layerPoint);
                 }
                 else
                 {
                     _artyList.blue.cible.marker.setLatLng(latlng); 
+                    _artyList.blue.cible.latlng = latlng;
+                    _artyList.blue.cible.layerPoint = layerPoint;
                 }
 
             });
@@ -434,7 +436,6 @@
             {
                 e.preventDefault();
                 currentGroup = currentGroup + 1;
-                console.log(currentGroup);
                 
             });
 
