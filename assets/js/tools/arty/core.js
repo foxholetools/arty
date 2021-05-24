@@ -14,7 +14,6 @@ function getDist(from, to)
     const dLat = from.lat - to.lat;
     const dLng = from.lng - to.lng;
     const dist = Math.sqrt(dLat * dLat + dLng * dLng);
-    console.log(dist);
     return Math.round(dist * distMulti);
 }
 

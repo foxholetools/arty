@@ -225,14 +225,14 @@ $('#toolbox #building').click(function(e)
 
 map.on('zoom', function(e)
 {
-    // if (map.getZoom() < minZoom)
-    // {
-    //     $('.leaflet-subRegionLabels-pane').hide();
-    // }
-    // else if(displayInfos)
-    // {
+    if (map.getZoom() < minZoom) 
+    {
+        $('.leaflet-subRegionLabels-pane').hide();
+    }
+    else if(displayInfos)
+    {
         $('.leaflet-subRegionLabels-pane').show();
-    // }
+    }
 
 });
 
