@@ -1,3 +1,3 @@
-Add spooter point
-
-Update after move
+- Check float number
+- Fix circle on hexa map
+- Save list

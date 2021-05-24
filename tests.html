@@ -94,7 +94,7 @@
         <div id="backgroundPane"></div>
 
         <div id="list">
-            <p>Heure - Groupe | Spotter (dist - azim) | Arty (dist - azim) | Range (dist - azim)</p>
+            <p>Heure - Groupe | Spotter (dist - azim) | Arty (dist - azim) | Center (dist - azim) | Correction (dist - azim)</p>
         </div>
 
         <div id="toolbar">
@@ -367,7 +367,8 @@
                 // From
                 const date = new Date();
                 const h = date.getHours();
-                const m = date.getMinutes();
+                const m = String(date.getMinutes()).padStart(2, '0');
+                const s = String(date.getSeconds()).padStart(2, '0');
 
                 const inputDistance = $('#calc-dist').val();
                 const inputAzimut = $('#calc-azim').val();
@@ -420,7 +421,7 @@
                 correctionAzim = correctionAzim % 360;
 
                 // Set logs
-                $("<p>" + h + ':' + m + ' - ' + (currentGroup + 1) + " | "
+                $("<p>" + h + 'h' + m + "m" + s + 's - ' + (currentGroup + 1) + " | "
                     + inputDistance + "m - " + inputAzimut + "° | "
                     + artyDist + "m - " + artyAzim + "° | "
                     + centerDist + "m - " + centerAzim + "° | "
