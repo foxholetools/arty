@@ -1,6 +1,9 @@
+const iconUrl   = 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/';
+const shadowUrl = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png';
+
 const blueIcon = new L.Icon({
-	iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
-	shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+	iconUrl: iconUrl + 'marker-icon-2x-blue.png',
+	shadowUrl: shadowUrl,
 	iconSize: [25, 41],
 	iconAnchor: [12, 41],
 	popupAnchor: [1, -34],
@@ -9,8 +12,8 @@ const blueIcon = new L.Icon({
 });
 
 const goldIcon = new L.Icon({
-	iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-gold.png',
-	shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+	iconUrl: iconUrl + 'marker-icon-2x-gold.png',
+	shadowUrl: shadowUrl,
 	iconSize: [25, 41],
 	iconAnchor: [12, 41],
 	popupAnchor: [1, -34],
@@ -19,8 +22,8 @@ const goldIcon = new L.Icon({
 });
 
 const redIcon = new L.Icon({
-	iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
-	shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+	iconUrl: iconUrl + 'marker-icon-2x-red.png',
+	shadowUrl: shadowUrl,
 	iconSize: [25, 41],
 	iconAnchor: [12, 41],
 	popupAnchor: [1, -34],
@@ -29,8 +32,8 @@ const redIcon = new L.Icon({
 });
 
 const greenIcon = new L.Icon({
-	iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
-	shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+	iconUrl: iconUrl + 'marker-icon-2x-green.png',
+	shadowUrl: shadowUrl,
 	iconSize: [25, 41],
 	iconAnchor: [12, 41],
 	popupAnchor: [1, -34],
@@ -39,8 +42,8 @@ const greenIcon = new L.Icon({
 });
 
 const orangeIcon = new L.Icon({
-	iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png',
-	shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+	iconUrl: iconUrl + 'marker-icon-2x-orange.png',
+	shadowUrl: shadowUrl,
 	iconSize: [25, 41],
 	iconAnchor: [12, 41],
 	popupAnchor: [1, -34],
@@ -49,8 +52,8 @@ const orangeIcon = new L.Icon({
 });
 
 const yellowIcon = new L.Icon({
-	iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-yellow.png',
-	shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+	iconUrl: 'marker-icon-2x-yellow.png',
+	shadowUrl: shadowUrl,
 	iconSize: [25, 41],
 	iconAnchor: [12, 41],
 	popupAnchor: [1, -34],
@@ -59,8 +62,8 @@ const yellowIcon = new L.Icon({
 });
 
 const violetIcon = new L.Icon({
-	iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-violet.png',
-	shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+	iconUrl: iconUrl + 'marker-icon-2x-violet.png',
+	shadowUrl: shadowUrl,
 	iconSize: [25, 41],
 	iconAnchor: [12, 41],
 	popupAnchor: [1, -34],
@@ -69,8 +72,8 @@ const violetIcon = new L.Icon({
 });
 
 const greyIcon = new L.Icon({
-	iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-grey.png',
-	shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+	iconUrl: iconUrl + 'marker-icon-2x-grey.png',
+	shadowUrl: shadowUrl,
 	iconSize: [25, 41],
 	iconAnchor: [12, 41],
 	popupAnchor: [1, -34],
@@ -79,8 +82,8 @@ const greyIcon = new L.Icon({
 });
 
 const blackIcon = new L.Icon({
-	iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-black.png',
-	shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+	iconUrl: iconUrl + 'marker-icon-2x-black.png',
+	shadowUrl: shadowUrl,
 	iconSize: [25, 41],
 	iconAnchor: [12, 41],
 	popupAnchor: [1, -34],
