@@ -4,4 +4,4 @@ let defaultMap = L.tileLayer('https://raw.githubusercontent.com/foxholetools/ass
 var baseMaps = undefined;
 
 // Multiplicator for get distance
-const distMulti = 47;
+const distMulti = 52.40;

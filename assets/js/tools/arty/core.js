@@ -65,7 +65,7 @@ function getShotInfo(source, target)
     if (target !== undefined)
     {
         let distance = getDist(source.latlng, target.latlng);
-        let azimut = getAzimut(source.latlng, target.latlng);
+        let azimut   = getAzimut(source.latlng, target.latlng);
 
         return {
             azimut: azimut,
