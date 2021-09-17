@@ -9,8 +9,10 @@ regionBorders.map(function(regionBorder)
 
 regionLabels.map(function(regionName)
 {
+    console.log(regionName);
     L.marker(regionName.position, {
         pane: 'regionLabelsPane',
         icon: regionName.divIcon
     }).addTo(map);
+
 });

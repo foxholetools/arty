@@ -1,50 +1,367 @@
-const mapBounds = [[-228, 0], [-28, 256]];
-const mapHeight = mapBounds[1][0] - mapBounds[0][0];
-const mapWidth = mapBounds[1][1] - mapBounds[0][1];
-const mapOrigin = {x: 128, y: -128};
+const mapWidth = 256; // Tile size
+const mapOrigin = { x: 128, y: -128 }; // Center
+const maxGrid = { x: 7, y: 13 };
+const multiGrid = { x: mapWidth / (maxGrid.x + 1), y: mapWidth / (maxGrid.y + 1) };
 
-const o = mapOrigin;
-const w = mapWidth / 5.5;
-const k = w * Math.sqrt(3) / 2;
-
+// max X : 13
+// Max Y : 7
 const mapArray = [
-    { id: 3, name: 'Deadlands', center: [o.y, o.x] },
-    { id: 4, name: 'Callahans Passage', center: [o.y + k, o.x] },
-    { id: 5, name: 'Marban Hollow', center: [o.y + 0.5 * k, o.x + 0.75 * w] },
-    { id: 6, name: 'Umbral Wildwood', center: [o.y - k, o.x] },
-    { id: 7, name: 'The Moors', center: [o.y+1.5*k, o.x-0.75*w] },
-    { id: 8, name: 'The Heartlands', center: [o.y - 1.5 * k, o.x - 0.75 * w] },
-    { id: 9, name: 'Loch Mór', center: [o.y - 0.5 * k, o.x - 0.75 * w] },
-    { id: 10, name: 'The Linn of Mercy', center: [o.y + 0.5 * k, o.x - 0.75 * w] },
-    { id: 11, name: 'Reaching Trail', center: [o.y + 2 * k, o.x] },
-    { id: 12, name: 'Stonecradle', center: [o.y+k, o.x - 1.5 * w] },
-    { id: 13, name: 'Farranac Coast', center: [o.y, o.x-1.5 * w] },
-    { id: 14, name: 'Westgate', center: [o.y - k, o.x - 1.5 * w] },
-    { id: 15, name: 'Fisherman\'s Row', center: [o.y - 0.5 * k, o.x - 2.25 * w] },
-    { id: 16, name: 'The Oarbreaker Isles', center: [o.y + 0.5 * k, o.x - 2.25 * w] },
-    { id: 17, name: 'Great March', center: [o.y - 2 * k, o.x] },
-    { id: 18, name: 'Tempest Island', center: [o.y - 0.5 * k, o.x + 2.25 * w] },
-    { id: 19, name: 'Godcrofts', center: [o.y + 0.5 * k, o.x + 2.25 * w] },
-    { id: 20, name: 'Endless Shore', center: [o.y, o.x + 1.5 * w] },
-    { id: 21, name: 'Allod\'s Bight', center: [o.y - k, o.x + 1.5 * w] },
-    { id: 22, name: 'Weathered Expanse', center: [o.y + k, o.x + 1.5 * w] },
-    { id: 23, name: 'The Drowned Vale', center: [o.y - 0.5 * k, o.x + 0.75 * w] },
-    { id: 24, name: 'Shackled Chasm', center: [o.y - 1.5 * k, o.x + 0.75 * w] },
-    { id: 25, name: 'Viper Pit', center: [o.y + 1.5 * k, o.x + 0.75 * w] }
-]
+    {
+      id: 20,
+      name: "AllodsBightHex",
+      label: "Allods Bight",
+      grid: {
+        x: 5,
+        y: 8
+      }
+    },
+    {
+      id: 21,
+      name: "CallahansPassageHex",
+      label: "Callahans Passage",
+      grid: {
+        x: 3,
+        y: 4
+      }
+    },
+    {
+      id: 22,
+      name: "DeadLandsHex",
+      label: "DeadLands",
+      grid: {
+        x: 3,
+        y: 6
+      }
+    },
+    {
+      id: 23,
+      name: "DrownedValeHex",
+      label: "The Drowned Vale",
+      grid: {
+        x: 4,
+        y: 7
+      }
+    },
+    {
+      id: 24,
+      name: "EndlessShoreHex",
+      label: "Endless Shore",
+      grid: {
+        x: 5,
+        y: 6
+      }
+    },
+    {
+      id: 25,
+      name: "FarranacCoastHex",
+      label: "Farranac Coast",
+      grid: {
+        x: 1,
+        y: 6
+      }
+    },
+    {
+      id: 26,
+      name: "FishermansRowHex",
+      label: "Fishermans Row",
+      grid: {
+        x: 0,
+        y: 7
+      }
+    },
+    {
+      id: 27,
+      name: "GodcroftsHex",
+      label: "Godcrofts",
+      grid: {
+        x: 6,
+        y: 5
+      }
+    },
+    {
+      id: 28,
+      name: "GreatMarchHex",
+      label: "Great March",
+      grid: {
+        x: 3,
+        y: 10
+      }
+    },
+    {
+      id: 29,
+      name: "HeartlandsHex",
+      label: "The Heartlands",
+      grid: {
+        x: 2,
+        y: 9
+      }
+    },
+    {
+      id: 30,
+      name: "LinnMercyHex",
+      label: "The Linn of Mercy",
+      grid: {
+        x: 2,
+        y: 5
+      }
+    },
+    {
+      id: 31,
+      name: "LochMorHex",
+      label: "Loch Mór",
+      grid: {
+        x: 2,
+        y: 7
+      }
+    },
+    {
+      id: 32,
+      name: "MarbanHollow",
+      label: "Marban Hollow",
+      grid: {
+        x: 4,
+        y: 5
+      }
+    },
+    {
+      id: 33,
+      name: "MooringCountyHex",
+      label: "The Moors",
+      grid: {
+        x: 2,
+        y: 3
+      }
+    },
+    {
+      id: 34,
+      name: "OarbreakerHex",
+      label: "The Oarbreaker Isles",
+      grid: {
+        x: 0,
+        y: 5
+      }
+    },
+    {
+      id: 35,
+      name: "ReachingTrailHex",
+      label: "Reaching Trail",
+      grid: {
+        x: 3,
+        y: 2
+      }
+    },
+    {
+      id: 36,
+      name: "ShackledChasmHex",
+      label: "Shackled Chasm",
+      grid: {
+        x: 4,
+        y: 9
+      }
+    },
+    {
+      id: 37,
+      name: "StonecradleHex",
+      label: "Stonecradle",
+      grid: {
+        x: 1,
+        y: 4
+      }
+    },
+    {
+      id: 38,
+      name: "TempestIslandHex",
+      label: "Tempest Island",
+      grid: {
+        x: 6,
+        y: 7
+      }
+    },
+    {
+      id: 39,
+      name: "UmbralWildwoodHex",
+      label: "Umbral Wildwood",
+      grid: {
+        x: 3,
+        y: 8
+      }
+    },
+    {
+      id: 40,
+      name: "ViperPitHex",
+      label: "Viper Pit",
+      grid: {
+        x: 4,
+        y: 3
+      }
+    },
+    {
+      id: 41,
+      name: "WeatheredExpanseHex",
+      label: "Weathered Expanse",
+      grid: {
+        x: 5,
+        y: 4
+      }
+    },
+    {
+      id: 42,
+      name: "WestgateHex",
+      label: "Westgate",
+      grid: {
+        x: 1,
+        y: 8
+      }
+    },
+    {
+      id: 50,
+      name: "AcrithiaHex",
+      label: "Acrithia",
+      grid: {
+        x: 4,
+        y: 11
+      }
+    },
+    {
+      id: 51,
+      name: "AshFieldsHex",
+      label: "Ash Fields",
+      grid: {
+        x: 1,
+        y: 10
+      }
+    },
+    {
+      id: 52,
+      name: "BasinSionnachHex",
+      label: "Basin Sionnach",
+      grid: {
+        x: 3,
+        y: 0
+      }
+    },
+    {
+      id: 53,
+      name: "CallumsCapeHex",
+      label: "Callums Cape",
+      grid: {
+        x: 1,
+        y: 2
+      }
+    },
+    {
+      id: 54,
+      name: "ClansheadValleyHex",
+      label: "Clanshead Valley",
+      grid: {
+        x: 5,
+        y: 2
+      }
+    },
+    {
+      id: 55,
+      name: "HowlCountyHex",
+      label: "Howl County",
+      grid: {
+        x: 4,
+        y: 1
+      }
+    },
+    {
+      id: 56,
+      name: "KalokaiHex",
+      label: "Kalokai",
+      grid: {
+        x: 3,
+        y: 12
+      }
+    },
+    {
+      id: 57,
+      name: "MorgensCrossingHex",
+      label: "Morgens Crossing",
+      grid: {
+        x: 6,
+        y: 3
+      }
+    },
+    {
+      id: 58,
+      name: "NevishLineHex",
+      label: "Nevish Line",
+      grid: {
+        x: 0,
+        y: 3
+      }
+    },
+    {
+      id: 59,
+      name: "OriginHex",
+      label: "Origin",
+      grid: {
+        x: 0,
+        y: 9
+      }
+    },
+    {
+      id: 60,
+      name: "RedRiverHex",
+      label: "Red River",
+      grid: {
+        x: 2,
+        y: 11
+      }
+    },
+    {
+      id: 61,
+      name: "SpeakingWoodsHex",
+      label: "Speaking Woods",
+      grid: {
+        x: 2,
+        y: 1
+      }
+    },
+    {
+      id: 62,
+      name: "TerminusHex",
+      label: "Terminus",
+      grid: {
+        x: 5,
+        y: 10
+      }
+    },
+    {
+      id: 63,
+      name: "TheFingersHex",
+      label: "The Fingers",
+      grid: {
+        x: 6,
+        y: 9
+      }
+    }
+];
 
 const regionBorders = mapArray.map(function(region)
 {
-    if (region.name !== '')
+    if (region.name !== "")
     {
-        let item = region.center;
+        // Get location on grid
+        const x = region.grid.x + 1;
+        const y = region.grid.y + 1;
+
+        // Center of region
+        const center = [
+            -(y * multiGrid.y),
+            x * multiGrid.x
+        ];
+
         return ([
-            [item[0], item[1] - w / 2],
-            [item[0] + k / 2, item[1] - w / 4],
-            [item[0] + k / 2, item[1] + w / 4],
-            [item[0], item[1] + w / 2],
-            [item[0] - k / 2, item[1] + w / 4],
-            [item[0] - k / 2, item[1] - w / 4],
+            [ center[0], center[1] - 21.1 ], // Left
+            [ center[0] + 18.4, center[1] - 10.5 ], // Left top
+            [ center[0] + 18.4, center[1] + 10.5 ], // Right top
+            [ center[0], center[1] + 21.1 ], // Right
+            [ center[0] - 18.4, center[1] + 10.5 ], // Right bot
+            [ center[0] - 18.4, center[1] - 10.5 ], // Left bot
         ]);
     }
     else
@@ -55,16 +372,26 @@ const regionBorders = mapArray.map(function(region)
 
 const regionLabels = mapArray.map(function(region)
 {
-    if (region.name !== '')
+    if (region.name !== "")
     {
+        // Get location on grid
+        const x = region.grid.x + 1;
+        const y = region.grid.y + 1;
+
+        // Center of region
+        const center = [
+            -(y * multiGrid.y),
+            x * multiGrid.x
+        ];
+
         return ({
             divIcon: L.divIcon({
-                className: 'region-label',
-                html: region.name,
+                className: "region-label",
+                html: region.label,
                 iconSize: [150,30],
                 iconAnchor: [75,15]
             }),
-            position: region.center
+            position: center
         });
     }
     else
