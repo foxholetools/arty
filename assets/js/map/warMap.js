@@ -28,6 +28,8 @@ if (baseMaps !== undefined)
     L.control.layers(baseMaps, {}).addTo(map);
 }
 
+console.log(map);
+
 // Pane
 const basesPane = map.createPane('basesPane');
 basesPane.style.zIndex = 610;
