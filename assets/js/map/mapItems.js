@@ -1,7 +1,7 @@
 // Converts a coordinate from the regional coordinate system to the world coordinate system
 function convertCoords(regionId, x, y)
 {
-    let xcoord = mapArray[regionId - 3].center[1] - (w / 2) + (w * x);
+    let xcoord = mapArray[regionId - 3].center[1] - (h / 2) + (h * x);
     let ycoord = mapArray[regionId - 3].center[0] + (k / 2) - (k * y);
     return {
         xcoord, ycoord
