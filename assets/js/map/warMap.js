@@ -8,7 +8,7 @@ const mapOptions = {
     attributionControl: true,
   
     crs: L.CRS.Simple,
-    center: [-128, 128],
+    center: [128, -128],
     zoom: 3,
     minZoom: 2,
     maxZoom: 7, // tmp (max 7)
@@ -57,7 +57,7 @@ backgroundPane.style.zIndex = 100;
 
 // assets/images/world_map_bg.jpg
 L.imageOverlay(
-    'https://assets.foxhole.tools/images/map/worldbg.png',
+    'https://assets.foxhole.tools/icons/map/worldbg.png',
     [
         [ -349.538, -265.846],
         [ 93.538, 521.846 ]

@@ -1,16 +1,14 @@
 const mapWidth = 256; // Tile size
 const mapOrigin = { x: 128, y: -128 }; // Center
-const maxGrid = { x: 14, y: 14 }; // x : 7 | y : 13
-const multiGrid = { 
-    x: mapWidth / (maxGrid.x + 2),
-    y: mapWidth / maxGrid.y
-};
+const maxGrid = { x: 14, y: 14 }; // x : 7 | y : 14
 
 // For borders
-const w = mapWidth / 6.05;
-const k = w * Math.sqrt(3) / 2;
+// h = hight of hexa
+const h = mapWidth /14  ;
 
-// max X : 13
+const k = h*(2/Math.sqrt(3)) * (Math.sqrt(3)/2) ;
+
+// max X : 14
 // Max Y : 7
 const mapArray = [
     {
@@ -18,8 +16,8 @@ const mapArray = [
         name: "AllodsBightHex",
         label: "Allods Bight",
         grid: {
-            x: 5,
-            y: 8
+            x: 2,
+            y: -2
         }
     },
     {
@@ -27,8 +25,8 @@ const mapArray = [
         name: "CallahansPassageHex",
         label: "Callahans Passage",
         grid: {
-            x: 3,
-            y: 4
+            x: 0,
+            y: 2
         }
     },
     {
@@ -36,8 +34,8 @@ const mapArray = [
         name: "DeadLandsHex",
         label: "DeadLands",
         grid: {
-            x: 3,
-            y: 6
+            x: 0,
+            y: 0
         }
     },
     {
@@ -45,8 +43,8 @@ const mapArray = [
         name: "DrownedValeHex",
         label: "The Drowned Vale",
         grid: {
-            x: 4,
-            y: 7
+            x: 1,
+            y: -1
         }
     },
     {
@@ -54,8 +52,8 @@ const mapArray = [
         name: "EndlessShoreHex",
         label: "Endless Shore",
         grid: {
-            x: 5,
-            y: 6
+            x: 2,
+            y: 0
         }
     },
     {
@@ -63,8 +61,8 @@ const mapArray = [
         name: "FarranacCoastHex",
         label: "Farranac Coast",
         grid: {
-            x: 1,
-            y: 6
+            x: -2,
+            y: 0
         }
     },
     {
@@ -72,8 +70,8 @@ const mapArray = [
         name: "FishermansRowHex",
         label: "Fishermans Row",
         grid: {
-            x: 0,
-            y: 7
+            x: -3,
+            y: -1
         }
     },
     {
@@ -81,8 +79,8 @@ const mapArray = [
         name: "GodcroftsHex",
         label: "Godcrofts",
         grid: {
-            x: 6,
-            y: 5
+            x: 3,
+            y: 1
         }
     },
     {
@@ -90,8 +88,8 @@ const mapArray = [
         name: "GreatMarchHex",
         label: "Great March",
         grid: {
-            x: 3,
-            y: 10
+            x: 0,
+            y: -4
         }
     },
     {
@@ -99,8 +97,8 @@ const mapArray = [
         name: "HeartlandsHex",
         label: "The Heartlands",
         grid: {
-            x: 2,
-            y: 9
+            x: -1,
+            y: -3
         }
     },
     {
@@ -108,8 +106,8 @@ const mapArray = [
         name: "LinnMercyHex",
         label: "The Linn of Mercy",
         grid: {
-            x: 2,
-            y: 5
+            x: -1,
+            y: 1
         }
     },
     {
@@ -117,8 +115,8 @@ const mapArray = [
         name: "LochMorHex",
         label: "Loch Mór",
         grid: {
-            x: 2,
-            y: 7
+            x: -1,
+            y: -1
         }
     },
     {
@@ -126,8 +124,8 @@ const mapArray = [
         name: "MarbanHollow",
         label: "Marban Hollow",
         grid: {
-            x: 4,
-            y: 5
+            x: 1,
+            y: 1
         }
     },
     {
@@ -135,7 +133,7 @@ const mapArray = [
         name: "MooringCountyHex",
         label: "The Moors",
         grid: {
-            x: 2,
+            x: -1,
             y: 3
         }
     },
@@ -144,8 +142,8 @@ const mapArray = [
         name: "OarbreakerHex",
         label: "The Oarbreaker Isles",
         grid: {
-            x: 0,
-            y: 5
+            x: -3,
+            y: 1
         }
     },
     {
@@ -153,8 +151,8 @@ const mapArray = [
         name: "ReachingTrailHex",
         label: "Reaching Trail",
         grid: {
-            x: 3,
-            y: 2
+            x: 0,
+            y: 4
         }
     },
     {
@@ -162,8 +160,8 @@ const mapArray = [
         name: "ShackledChasmHex",
         label: "Shackled Chasm",
         grid: {
-            x: 4,
-            y: 9
+            x: 1,
+            y: -3
         }
     },
     {
@@ -171,8 +169,8 @@ const mapArray = [
         name: "StonecradleHex",
         label: "Stonecradle",
         grid: {
-            x: 1,
-            y: 4
+            x: -2,
+            y: 2
         }
     },
     {
@@ -180,8 +178,8 @@ const mapArray = [
         name: "TempestIslandHex",
         label: "Tempest Island",
         grid: {
-            x: 6,
-            y: 7
+            x: 3,
+            y: -1
         }
     },
     {
@@ -189,8 +187,8 @@ const mapArray = [
         name: "UmbralWildwoodHex",
         label: "Umbral Wildwood",
         grid: {
-            x: 3,
-            y: 8
+            x: 0,
+            y: -2
         }
     },
     {
@@ -198,7 +196,7 @@ const mapArray = [
         name: "ViperPitHex",
         label: "Viper Pit",
         grid: {
-          x: 4,
+          x: 1,
           y: 3
         }
     },
@@ -207,8 +205,8 @@ const mapArray = [
         name: "WeatheredExpanseHex",
         label: "Weathered Expanse",
         grid: {
-            x: 5,
-            y: 4
+            x: 2,
+            y: 2
         }
     },
     {
@@ -216,8 +214,8 @@ const mapArray = [
         name: "WestgateHex",
         label: "Westgate",
         grid: {
-          x: 1,
-          y: 8
+          x: -2,
+          y: -2
         }
     },
     {
@@ -225,8 +223,8 @@ const mapArray = [
         name: "AcrithiaHex",
         label: "Acrithia",
         grid: {
-            x: 4,
-            y: 11
+            x: 1,
+            y: -5
         }
     },
     {
@@ -234,8 +232,8 @@ const mapArray = [
         name: "AshFieldsHex",
         label: "Ash Fields",
         grid: {
-            x: 1,
-            y: 10
+            x: -2,
+            y: -4
         }
     },
     {
@@ -243,8 +241,8 @@ const mapArray = [
         name: "BasinSionnachHex",
         label: "Basin Sionnach",
         grid: {
-            x: 3,
-            y: 0
+            x: 0,
+            y: 6
         }
     },
     {
@@ -252,8 +250,8 @@ const mapArray = [
         name: "CallumsCapeHex",
         label: "Callums Cape",
         grid: {
-            x: 1,
-            y: 2
+            x: -2,
+            y: 4
         }
     },
     {
@@ -261,8 +259,8 @@ const mapArray = [
         name: "ClansheadValleyHex",
         label: "Clanshead Valley",
         grid: {
-            x: 5,
-            y: 2
+            x: 2,
+            y: 4
         }
     },
     {
@@ -270,8 +268,8 @@ const mapArray = [
         name: "HowlCountyHex",
         label: "Howl County",
         grid: {
-            x: 4,
-            y: 1
+            x: 1,
+            y: 5
         }
     },
     {
@@ -279,8 +277,8 @@ const mapArray = [
         name: "KalokaiHex",
         label: "Kalokai",
         grid: {
-            x: 3,
-            y: 12
+            x: 0,
+            y: -6
         }
     },
     {
@@ -288,7 +286,7 @@ const mapArray = [
         name: "MorgensCrossingHex",
         label: "Morgens Crossing",
         grid: {
-            x: 6,
+            x: 3,
             y: 3
         }
     },
@@ -297,7 +295,7 @@ const mapArray = [
         name: "NevishLineHex",
         label: "Nevish Line",
         grid: {
-            x: 0,
+            x: -3,
             y: 3
         }
     },
@@ -306,8 +304,8 @@ const mapArray = [
         name: "OriginHex",
         label: "Origin",
         grid: {
-            x: 0,
-            y: 9
+            x: -3,
+            y: -3
         }
     },
     {
@@ -315,8 +313,8 @@ const mapArray = [
         name: "RedRiverHex",
         label: "Red River",
         grid: {
-            x: 2,
-            y: 11
+            x: -1,
+            y: -5
         }
     },
     {
@@ -324,8 +322,8 @@ const mapArray = [
         name: "SpeakingWoodsHex",
         label: "Speaking Woods",
         grid: {
-            x: 2,
-            y: 1
+            x: -1,
+            y: 5
         }
     },
     {
@@ -333,8 +331,8 @@ const mapArray = [
         name: "TerminusHex",
         label: "Terminus",
         grid: {
-            x: 5,
-            y: 10
+            x: 2,
+            y: -4
         }
     },
     {
@@ -342,8 +340,8 @@ const mapArray = [
         name: "TheFingersHex",
         label: "The Fingers",
         grid: {
-            x: 6,
-            y: 9
+            x: 3,
+            y: -3
         }
     }
 ];
@@ -351,14 +349,15 @@ const mapArray = [
 function getCenter(region)
 {
     // Get location on grid
-    const y = region.grid.y + 1;
-    const x = (region.grid.x + 1) * 2;
+    const y = region.grid.y;
+    const x = region.grid.x;
 
     // Center of region
     return [
-        -(y * (multiGrid.y)) - (y * - 0.1),
-        x * multiGrid.x
+        mapOrigin.y + ((y)*h),
+        mapOrigin.x + (x)*h*Math.sqrt(3)
     ];
+
 }
 
 
@@ -386,12 +385,12 @@ const regionBorders = mapArray.map(function(region)
     {
         const item = getCenter(region);
         return ([
-            [ item[0], item[1] - w / 2 ], // Left
-            [ item[0] + k / 2, item[1] - w / 4 ], // Left top
-            [ item[0] + k / 2, item[1] + w / 4 ], // Right top
-            [ item[0], item[1] + w / 2 ], // Right
-            [ item[0] - k / 2, item[1] + w / 4 ], // Right bot
-            [ item[0] - k / 2, item[1] - w / 4 ], // Left bot
+            [ item[0], item[1] - h*(2/Math.sqrt(3))  ], // Left
+            [ item[0] + k , item[1] - h*(2/Math.sqrt(3))/2  ], // Left top
+            [ item[0] + k , item[1] + h*(2/Math.sqrt(3))/2 ], // Right top
+            [ item[0], item[1] + h*(2/Math.sqrt(3))  ], // Right
+            [ item[0] - k , item[1] + h*(2/Math.sqrt(3))/2], // Right bot
+            [ item[0] - k , item[1] - h*(2/Math.sqrt(3))/2 ], // Left bot
         ]);
 
     }
