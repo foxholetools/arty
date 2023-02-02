@@ -1,6 +1,6 @@
 // github : https://github.com/foxholetools/assets/raw/master/dist/maps/tiles/
 // web server : https://assets.foxhole.tools/maps/tiles
-let defaultMap = L.tileLayer('https://github.com/foxholetools/assets/raw/master/dist/maps/tiles/clasic/warmap/{z}/{z}_{x}_{y}.png');
+let defaultMap = L.tileLayer('https://github.com/foxholetools/assets/raw/master/dist/maps/tiles/warmap/{z}/{z}_{x}_{y}.png');
 
 var baseMaps = undefined;
 
